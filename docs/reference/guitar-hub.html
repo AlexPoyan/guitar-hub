@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guitar Hub: гами, акорди, теорія і тренажери</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&amp;family=Onest:wght@400;500;600&amp;display=swap">
+<style>
+:root{--bg:#F2F6F4;--surface:#FFFFFF;--soft:#E9F0ED;--ink:#14211D;--muted:#566860;--line:#D3DDD8;--accent:#1B7A6B;--accent-ink:#0B4B41;--tint:#D9EEE8;--root:#D9442A;--bar-a:#CFE8E1;--bar-b:#EADFB9;--bar-t:#17403A;--bar-t2:#4A3E14;--ok:#1E8A55;--bad:#C03A2B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1514;--surface:#172120;--soft:#1E2B29;--ink:#E5EEEB;--muted:#93A8A1;--line:#2B3C39;--accent:#52C7B2;--accent-ink:#C3F0E6;--tint:#1B3B36;--root:#F0634A;--bar-a:#1F4540;--bar-b:#4A4224;--bar-t:#CDEFE7;--bar-t2:#F0E3B5;--ok:#58D18F;--bad:#F27A6B}}
+:root[data-theme="dark"]{--bg:#0F1514;--surface:#172120;--soft:#1E2B29;--ink:#E5EEEB;--muted:#93A8A1;--line:#2B3C39;--accent:#52C7B2;--accent-ink:#C3F0E6;--tint:#1B3B36;--root:#F0634A;--bar-a:#1F4540;--bar-b:#4A4224;--bar-t:#CDEFE7;--bar-t2:#F0E3B5;--ok:#58D18F;--bad:#F27A6B}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+h1,h2,h3{font-family:"Literata",Georgia,"Times New Roman",serif;font-weight:700;line-height:1.25;margin:0 0 .4em}
+h1{font-size:30px}h2{font-size:21px}h3{font-size:17px;margin-top:1.2em}
+p{margin:0 0 .9em;max-width:72ch}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Literata",Georgia,serif;font-weight:700;font-size:23px;line-height:1.1;letter-spacing:-0.3px;white-space:nowrap}
+.brand .wmt i{font-style:normal;color:var(--accent)}
+.brand small{display:block;font-family:"Onest",system-ui,sans-serif;font-weight:400;font-size:12px;color:var(--muted)}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:7px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:15px;white-space:nowrap;border:1px solid transparent}
+nav a:hover{border-color:var(--line)}
+nav a.on{background:var(--tint);color:var(--accent-ink);font-weight:500;border-color:var(--accent)}
+main{padding-top:26px;padding-bottom:60px}
+.lead{color:var(--muted);font-size:17px;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:0 0 18px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.row label{font-size:14px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.grp>span{font-size:13px;color:var(--muted);min-width:118px}
+.btn,select{font:inherit;font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover,select:hover{border-color:var(--accent)}
+.btn.on{background:var(--tint);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.info{font-size:14px;color:var(--muted);margin:2px 0 10px}
+.boardwrap{overflow-x:auto;border-radius:10px;-webkit-overflow-scrolling:touch}
+svg.board{display:block;min-width:760px;width:100%;height:auto}
+svg.board .mk{cursor:pointer}
+svg.board .hit{cursor:pointer}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.25)}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-weight:500;color:var(--muted);font-size:13px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-bottom:14px}
+.cd{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit}
+.cd:hover{border-color:var(--accent)}
+.cd b{font-weight:600;font-size:15px}
+.cd svg{width:84px;height:auto}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid var(--line);margin:0 6px 6px 0}
+.prog{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.prog .nm{min-width:210px;font-size:14px;color:var(--muted)}
+.pc{display:inline-flex;flex-direction:column;align-items:center;padding:4px 10px;border:1px solid var(--line);border-radius:8px;min-width:54px;background:var(--surface)}
+.pc b{font-weight:600}.pc small{font-size:11px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.two{grid-template-columns:1fr}.bar{gap:10px}.brand small{display:none}h1{font-size:25px}}
+.steps{margin:0;padding-left:1.2em}.steps li{margin-bottom:.6em;max-width:72ch}
+.tips{margin:0;padding:0;list-style:none}.tips li{padding:8px 0;border-bottom:1px solid var(--line);max-width:80ch}.tips li:last-child{border-bottom:0}
+.big{font-family:"Literata",Georgia,serif;font-size:34px;font-weight:700}
+.fb{min-height:24px;font-size:15px;margin:8px 0}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.prog-bar{height:10px;border-radius:6px;background:var(--soft);overflow:hidden;margin:8px 0 14px}
+.prog-bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:6px 0;max-width:80ch;cursor:pointer}
+.ck input{margin-top:5px;accent-color:var(--accent)}
+.beats{display:flex;gap:8px;margin:10px 0}
+.beats i{width:18px;height:18px;border-radius:50%;background:var(--soft);border:1px solid var(--line)}
+.beats i.on{background:var(--accent)}
+.beats i.ac.on{background:var(--root)}
+input[type=range]{accent-color:var(--accent);width:220px}
+.accrow{display:flex;align-items:flex-end;gap:4px;flex-wrap:wrap;margin:10px 0 4px;min-height:70px}
+.ab{display:flex;flex-direction:column-reverse;align-items:center;gap:4px;background:none;border:0;cursor:pointer;padding:2px 3px;color:var(--muted);font:inherit;font-size:12px}
+.ab i{display:block;width:22px;border-radius:5px;background:var(--accent)}
+.ab.gs{margin-left:14px}
+.ab.l3 i{height:46px;background:var(--root)}.ab.l2 i{height:30px}.ab.l1 i{height:18px;opacity:.6}.ab.l0 i{height:5px;opacity:.35}
+.ab.cur i{outline:2px solid var(--ink);outline-offset:2px}
+.sec{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:12px 0}
+.sec h3{margin:0 0 8px;font-size:15px}
+input[type=number],input[type=text]{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:78px}
+input[type=text]{width:170px}
+input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+.tuner{max-width:380px;margin:8px auto 0;text-align:center}
+.tuner .nt{font-family:"Literata",Georgia,serif;font-size:46px;font-weight:700;line-height:1.1}
+.steps li.done{color:var(--muted);text-decoration:line-through}
+.steps li.now{font-weight:600;color:var(--accent-ink)}
+[hidden]{display:none!important}
+.pane>h1,.pane>.lead,.card.view>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.subbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.subnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px 0}
+.subnav::-webkit-scrollbar{display:none}
+.subnav .btn{white-space:nowrap;border-radius:999px;padding:7px 15px}
+.subextra .rl{font-size:14px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.gl{font-size:12px;color:var(--muted);margin-left:10px}
+.gl:first-child{margin-left:0}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px}
+.cols3 h3{margin-top:0}
+details.sec summary{cursor:pointer;font-weight:500}
+#tm-list{columns:2;column-gap:28px;margin-top:10px}
+main{padding-top:14px}
+.card{padding:14px 18px;margin:0 0 14px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0}
+.seg button{font:inherit;font-size:14px;padding:6px 14px;background:var(--surface);color:var(--ink);border:0;cursor:pointer;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--tint);color:var(--accent-ink);font-weight:500}
+svg.board .bar{cursor:pointer}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+<div class="brand"><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex-shrink:0"><rect width="32" height="32" rx="8" fill="#3A2419"/><line x1="12" y1="5" x2="12" y2="27" stroke="#C3C8CA" stroke-width="1"/><line x1="5" y1="10" x2="27" y2="10" stroke="#D2D6D8" stroke-width="1"/><line x1="5" y1="16" x2="27" y2="16" stroke="#D2D6D8" stroke-width="1.4"/><line x1="5" y1="22" x2="27" y2="22" stroke="#D2D6D8" stroke-width="1.8"/><circle cx="19" cy="10" r="3.4" fill="#F1E9D3"/><circle cx="19" cy="22" r="3.4" fill="#E0452B"/></svg><span><span class="wmt">Guitar <i>Hub</i></span><small>до 24 ладів, стандартний стрій</small></span></div>
+<nav id="nav" aria-label="Розділи">
+<a href="#scales">Гами</a><a href="#notes">Ноти</a><a href="#chords">Акорди</a><a href="#theory">Теорія</a><a href="#trainer">Тренажер</a><a href="#metronome">Метроном</a><a href="#tuner">Тюнер</a><a href="#practice">Практика</a><a href="#plan">План</a>
+</nav>
+</div></header>
+<main class="wrap">
+
+<section class="pane" id="p-scales">
+<h1>Гами на всьому грифі</h1>
+<p class="lead">Оберіть тоніку й гаму. Смуги під грифом показують межі позицій, а натискання на ноту програє її.</p>
+<div class="card view" data-title="Гриф і гами">
+<div class="row"><label>Тоніка <select id="s-root"></select></label><button class="btn pri" id="s-play">Зіграти гаму</button><button class="btn on" id="s-v-pos">Потрібні позиції</button><button class="btn" id="s-v-full">Весь гриф, 24 лади</button><div class="seg lb-seg" role="group" aria-label="Підписи на грифі"><button class="on" data-v="n">Ноти</button><button data-v="i">Інтервали</button></div></div>
+<div class="row" style="margin-bottom:8px"><div class="seg" id="s-grp"></div></div>
+<div id="s-chips" class="chips"></div>
+<p class="info" id="s-info"></p>
+<div class="boardwrap"><svg class="board" id="s-svg" viewBox="0 0 1000 400" role="img" aria-label="Гриф з нотами обраної гами"></svg></div>
+<div class="legend"><span><i class="sw" style="background:#E0452B"></i>тоніка</span><span><i class="sw" style="background:#F3B94A"></i>ноти поза пентатонікою (мінорною або мажорною)</span><span><i class="sw" style="background:#F1E9D3"></i>решта нот гами</span></div>
+</div>
+<div class="card view" data-title="Як читати позиції">
+<h2>Як читати позиції</h2>
+<p>У режимі «Потрібні позиції» гриф обрізається до діапазону, де кожна позиція видна повністю один раз. Режим «Весь гриф» показує всі 24 лади, як на суперстраті, і всі повтори позицій.</p>
+<p>Пентатоніка має п’ять позицій по дві ноти на струні, діатонічні гами мають сім позицій по три ноти на струні. Номер позиції визначає ступінь, з якого вона починається на шостій струні. Кожна позиція повторюється в нижній і верхній октаві, тому на одному грифі їх по дві.</p>
+<p>Блюзова гама користується тими самими п’ятьма позиціями, що й мінорна пентатоніка, а ♭5 просто додається всередину кожної «коробки». Жовті ноти допомагають побачити, чим лад відрізняється від пентатоніки: саме їх варто акцентувати, коли хочете почути характер ладу.</p>
+</div>
+</section>
+
+<section class="pane" id="p-notes" hidden>
+<h1>Ноти на грифі</h1>
+<p class="lead">Оберіть ноту, щоб побачити всі її місця на грифі. Дивіться на візерунок: він повторюється, і саме на цьому тримається навігація.</p>
+<div class="card view" data-title="Карта нот">
+<div class="row"><button class="btn" id="n-acc">Показувати діези</button></div>
+<div id="n-chips" class="grp"></div>
+<div class="boardwrap"><svg class="board" id="n-svg" viewBox="0 0 1000 300" role="img" aria-label="Карта нот на грифі"></svg></div>
+</div>
+<div class="two view" data-title="Орієнтири й октави">
+<div class="card">
+<h2>Орієнтири на грифі</h2>
+<ul class="tips">
+<li>Починайте з шостої та п’ятої струн. Кожна нота на них стає тонікою баре-акорда й точкою відліку для CAGED.</li>
+<li>Півтони в природних нотах лише між E–F та B–C. На решті проміжків між сусідніми природними нотами один лад пропущено (діез або бемоль).</li>
+<li>Нота на п’ятому ладу нижчої струни збігається з відкритою сусідньою струною: на 5-му ладу шостої струни звучить A, як відкрита п’ята. Виняток це пара G–B, там потрібен 4-й лад.</li>
+<li>Дванадцятий лад повторює відкриту струну на октаву вище, а інлеї на 3, 5, 7, 9, 12 допомагають не губитися.</li>
+</ul>
+</div>
+<div class="card">
+<h2>Октавні форми</h2>
+<p>Та сама нота на октаву вище лежить за сталим візерунком:</p>
+<div class="tw"><table class="tbl"><tr><th>Зі струни</th><th>На струну</th><th>Зсув ладів</th></tr>
+<tr><td>6 (E)</td><td>4 (D)</td><td>+2</td></tr>
+<tr><td>5 (A)</td><td>3 (G)</td><td>+2</td></tr>
+<tr><td>4 (D)</td><td>2 (B)</td><td>+3</td></tr>
+<tr><td>3 (G)</td><td>1 (e)</td><td>+3</td></tr>
+<tr><td>6 (E)</td><td>1 (e)</td><td>+0 (на дві октави вище)</td></tr></table></div>
+</div>
+</div>
+<div class="card view" data-title="Стрій">
+<h2>Стандартний стрій</h2>
+<p>Натискайте на струну, щоб почути еталонну ноту, і налаштовуйте гітару на слух або за тюнером.</p>
+<div class="row" id="n-tune"></div>
+</div>
+</section>
+
+<section class="pane" id="p-chords" hidden>
+<h1>Акорди і тризвуччя</h1>
+<p class="lead">Акорд складається з нот, які розкидані по всьому грифу. Вивчіть, де саме вони лежать, і форми акордів стануть зрозумілими.</p>
+<div class="subextra"><label class="rl">Тоніка <select id="c-root"></select></label></div>
+
+<div class="card view" data-title="Побудова акорда">
+<h2>Побудова акорда</h2>
+<div class="row"><label>Тип <select id="c-qual"></select></label><button class="btn pri" id="c-play">Зіграти акорд</button><div class="seg lb-seg" role="group" aria-label="Підписи на грифі"><button class="on" data-v="n">Ноти</button><button data-v="i">Інтервали</button></div></div>
+<p class="info" id="c-info"></p>
+<div class="boardwrap"><svg class="board" id="c-svg" viewBox="0 0 1000 300" role="img" aria-label="Звуки акорда на всьому грифі"></svg></div>
+<div class="legend"><span><i class="sw" style="background:#E0452B"></i>тоніка</span><span><i class="sw" style="background:#F3B94A"></i>терція (або секунда/кварта в sus)</span><span><i class="sw" style="background:#5CC4B3"></i>квінта</span><span><i class="sw" style="background:#B69CF2"></i>секста, септима, нона</span></div>
+</div>
+
+<div class="card view" data-title="Типи акордів">
+<h2>Усі типи акордів від обраної тоніки</h2>
+<div class="tw"><table class="tbl" id="c-table"></table></div>
+</div>
+
+<div class="card view" data-title="Тризвуччя">
+<h2>Тризвуччя на трьох сусідніх струнах</h2>
+<div class="row"><label>Тризвуччя <select id="t-qual"></select></label><div class="seg lb-seg" role="group" aria-label="Підписи на грифі"><button class="on" data-v="n">Ноти</button><button data-v="i">Інтервали</button></div></div>
+<div class="grp" id="t-sets"></div>
+<div class="boardwrap"><svg class="board" id="t-svg" viewBox="0 0 1000 300" role="img" aria-label="Тризвуччя на трьох струнах з інверсіями"></svg></div>
+<div class="legend"><span><i class="sw" style="background:#5CC4B3"></i>основний вигляд (тоніка знизу)</span><span><i class="sw" style="background:#F3B94A"></i>перша інверсія (терція знизу)</span><span><i class="sw" style="background:#B69CF2"></i>друга інверсія (квінта знизу)</span><span><i class="sw" style="background:#3A2419;border:3px solid #E0452B"></i>червоне кільце: тоніка акорда</span></div>
+<p class="info" style="margin-top:10px">Тризвуччя на верхніх струнах звучать легко й чисто, на них будують ритм-партії у фанку, поп-музиці та реґі. Кожен акорд можна зіграти трьома способами на кожному наборі струн, тому цієї карти достатньо, щоб зіграти будь-який тризвук у будь-якому місці грифа.</p>
+</div>
+
+<div class="card view" data-title="CAGED">
+<h2>Система CAGED</h2>
+<div class="row"><button class="btn" id="g-maj">Мажор</button><button class="btn" id="g-min">Мінор</button><div class="seg lb-seg" role="group" aria-label="Підписи на грифі"><button class="on" data-v="n">Ноти</button><button data-v="i">Інтервали</button></div></div>
+<div class="boardwrap"><svg class="board" id="g-svg" viewBox="0 0 1000 400" role="img" aria-label="П’ять форм CAGED вздовж грифа"></svg></div>
+<p class="info" style="margin-top:10px">П’ять відкритих форм (C, A, G, E, D) можна пересувати грифом, і вони по черзі покривають усю шийку від нижніх ладів до верхніх. Порядок на грифі завжди однаковий: C, A, G, E, D, потім знову C. Для мінору є три зручні форми (E, A, D), решта незручні для гри.</p>
+</div>
+
+<div class="card view" data-title="Відкриті акорди">
+<h2>Відкриті акорди і барре</h2>
+<p>Натисніть на діаграму, щоб почути акорд. Кружечок над грифом означає відкриту струну, хрестик означає, що струна не звучить. Струни йдуть зліва направо від шостої (E) до першої (e).</p>
+<div id="c-gal"></div>
+</div>
+</section>
+
+<section class="pane" id="p-theory" hidden>
+<h1>Теорія</h1>
+<p class="lead">Короткий маршрут від нот до ладів. Кожен крок спирається на попередній, тому йдіть по порядку.</p>
+
+<div class="card view" data-title="Інтервали">
+<h2>Інтервали</h2>
+<p>Інтервал це відстань між двома нотами в півтонах. На одній струні півтон дорівнює одному ладу, тому інтервал легко відрахувати вздовж струни. На сусідніх струнах на одному ладу лежить чиста кварта (на парі G–B велика терція).</p>
+<div class="tw"><table class="tbl" id="i-table"></table></div>
+</div>
+
+<div class="card view" data-title="Лади">
+<h2>Мажорна гама й лади</h2>
+<p>Мажорна гама будується за формулою: тон, тон, півтон, тон, тон, тон, півтон (2 2 1 2 2 2 1). Якщо пройти ті самі ноти від іншого ступеня, вийде інший лад. Нижче всі сім ладів від ноти C (тобто на тих самих білих клавішах).</p>
+<div class="tw"><table class="tbl" id="m-table"></table></div>
+</div>
+
+<div class="card view" data-title="Коло квінт">
+<h2>Коло квінт і акорди тональності</h2>
+<p>Оберіть тональність. Зовнішнє коло дає мажорні тональності, внутрішнє дає їхні паралельні мінорні.</p>
+<div class="two">
+<div><svg id="k-svg" viewBox="0 0 340 340" width="100%" style="max-width:340px;display:block;margin:0 auto" role="img" aria-label="Коло квінт"></svg></div>
+<div id="k-out"></div>
+</div>
+</div>
+
+<div class="card view" data-title="Ритм">
+<h2>Ритм</h2>
+<div class="two">
+<div><div class="tw"><table class="tbl">
+<tr><th>Тривалість</th><th>Доль у розмірі 4/4</th></tr>
+<tr><td>Ціла</td><td>4</td></tr><tr><td>Половинна</td><td>2</td></tr><tr><td>Чвертна</td><td>1</td></tr><tr><td>Восьма</td><td>1/2</td></tr><tr><td>Шістнадцята</td><td>1/4</td></tr><tr><td>З крапкою</td><td>довшає в півтора раза</td></tr></table></div></div>
+<div>
+<p>Рахуйте вголос: «раз і два і три і чотири і». Сильні долі це цифри, слабкі це «і».</p>
+<p>Основний бій для 4/4: ↓ ↓ ↑ ↑ ↓ ↑. Для 3/4 (вальс): ↓ ↓ ↑ ↓ ↑. Для 6/8: ↓ ↓ ↑ ↓ ↓ ↑.</p>
+<p>Тренуйтесь під метроном у розділі «Практика»: рука не повинна зупинятися, навіть коли ви не торкаєтесь струн.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pane" id="p-trainer" hidden>
+<h1>Тренажер</h1>
+<p class="lead">Короткі щоденні вправи дають швидший результат, ніж довгі нерегулярні. Десяти хвилин на день достатньо.</p>
+
+<div class="card view" data-title="Ноти на грифі">
+<h2>Ноти на грифі</h2>
+<div class="row"><button class="btn on" id="q-find">Знайти ноту</button><button class="btn" id="q-name">Назвати ноту</button><label>Лади <select id="q-range"><option value="5">0–5</option><option value="12" selected>0–12</option><option value="24">0–24</option></select></label></div>
+<div class="big" id="q-prompt">...</div>
+<div class="row" id="q-btns"></div>
+<div class="fb" id="q-fb"></div>
+<div class="boardwrap"><svg class="board" id="q-svg" viewBox="0 0 1000 300" role="img" aria-label="Гриф для тренажера"></svg></div>
+<p class="info" id="q-score" style="margin-top:8px"></p>
+</div>
+
+<div class="card view" data-title="Інтервали на слух">
+<h2>Інтервали на слух</h2>
+<div class="row"><label>Складність <select id="e-level"><option value="easy">прості (терції, кварта, квінта, октава)</option><option value="all">усі інтервали</option></select></label><label>Звучання <select id="e-mode"><option value="mel">послідовно</option><option value="har">одночасно</option></select></label></div>
+<div class="row"><button class="btn pri" id="e-play">Зіграти</button><button class="btn" id="e-next">Новий інтервал</button></div>
+<div class="row" id="e-btns"></div>
+<div class="fb" id="e-fb"></div>
+<p class="info" id="e-score"></p>
+</div>
+
+</section>
+
+<section class="pane" id="p-metronome" hidden>
+<h1>Метроном</h1>
+<p class="lead">Будь-який розмір, групування, підрозділ і звук. Працює й без інтернету.</p>
+<div class="card view" data-title="Метроном">
+<h2>Метроном</h2>
+<div class="row"><button class="btn pri" id="mt-go" style="min-width:110px">Старт</button><span class="big" id="mt-bpm-v">120</span><span class="info" style="margin:0">уд/хв, <span id="mt-tname"></span></span>
+<button class="btn" data-d="-5">−5</button><button class="btn" data-d="-1">−1</button><button class="btn" data-d="1">+1</button><button class="btn" data-d="5">+5</button><button class="btn" id="mt-tap">Вистукати темп</button><span class="info" id="mt-st" style="margin:0"></span></div>
+<div class="row"><input type="range" id="mt-bpm" min="30" max="300" value="120" style="width:100%;max-width:560px" aria-label="Темп"></div>
+<div class="row">
+<label>Розмір <select id="mt-meter"></select></label>
+<span id="mt-custom" style="display:none"><label>Долей <select id="mt-n"></select></label> <label>Нота <select id="mt-d"><option value="2">1/2</option><option value="4" selected>1/4</option><option value="8">1/8</option><option value="16">1/16</option></select></label></span>
+<label>Групування <select id="mt-group"></select></label>
+<label>Підрозділ <select id="mt-sub"><option value="1">лише долі</option><option value="2">восьмі (×2)</option><option value="3">тріолі (×3)</option><option value="4">шістнадцяті (×4)</option></select></label>
+<label id="mt-swl" style="display:none">Свінг <input type="range" id="mt-swing" min="50" max="75" value="60" style="width:110px"> <b id="mt-swv">60%</b></label>
+<label>Звук <select id="mt-sound"></select></label>
+<label>Гучність <input type="range" id="mt-vol" min="0" max="100" value="100" style="width:120px"></label>
+</div>
+<div class="row" style="margin:0"><label><input type="checkbox" id="mt-flat" checked> Без акценту (усі долі однакові)</label></div>
+<div class="accrow" id="mt-acc"></div>
+<p class="info">Натискайте на долю, щоб змінити її силу: сильна, середня, тиха, пауза. Темп рахується по нотах знаменника (у 6/8 це вісімки).</p>
+<details class="sec"><summary>Додаткові режими: тихі такти й автоматичне прискорення</summary>
+<div class="two" style="margin-top:10px">
+<div><h3 style="margin:0 0 8px;font-size:15px">Тихі такти</h3>
+<div class="row"><label><input type="checkbox" id="mt-sil"> Вимикати клік</label></div>
+<div class="row"><label>Грає <input type="number" id="mt-sil-p" value="4" min="1" max="32"> тактів</label><label>мовчить <input type="number" id="mt-sil-r" value="1" min="1" max="16"> тактів</label></div>
+<p class="info" style="margin:0">Тренує внутрішнє відчуття ритму: клік зникає, а ви продовжуєте грати в темпі.</p></div>
+<div><h3 style="margin:0 0 8px;font-size:15px">Автоматичне прискорення</h3>
+<div class="row"><label><input type="checkbox" id="mt-ramp"> Увімкнути</label></div>
+<div class="row"><label>Старт <input type="number" id="mt-r0" value="80" min="30" max="300"></label><label>Мета <input type="number" id="mt-r1" value="120" min="30" max="300"></label><label>Крок <input type="number" id="mt-rs" value="4" min="1" max="30"></label><label>Кожні <input type="number" id="mt-re" value="4" min="1" max="32"> тактів</label></div></div>
+</div></details>
+</div>
+</section>
+
+<section class="pane" id="p-tuner" hidden>
+<h1>Тюнер</h1>
+<p class="lead">Тюнер із мікрофоном і еталонні звуки для різних строїв.</p>
+<div class="card view" data-title="Тюнер">
+<h2>Тюнер</h2>
+<div class="row"><label>Стрій <select id="tn-tun"></select></label><label>A4 <input type="number" id="tn-ref" value="440" min="415" max="466"> Гц</label></div>
+<p class="info">Натисніть на струну: вона стане метою тюнера, а еталонний звук зазвучить, поки ви його не вимкнете повторним натисканням.</p>
+<div class="row" id="tn-str"></div>
+<div class="row"><button class="btn pri" id="tn-mic">Увімкнути мікрофон</button><button class="btn" id="tn-auto">Авто: найближча струна</button></div>
+<div class="tuner">
+<svg id="tn-g" viewBox="0 0 300 175" width="100%" role="img" aria-label="Шкала тюнера"></svg>
+<div class="nt" id="tn-note">—</div>
+<div class="info" id="tn-hz" style="margin:2px 0"></div>
+<div class="fb" id="tn-msg" style="min-height:48px"></div>
+</div>
+</div>
+</section>
+
+<section class="pane" id="p-practice" hidden>
+<h1>Практика</h1>
+<p class="lead">Тренажер швидкості й таймер заняття.</p>
+<div class="card view" data-title="Тренажер швидкості">
+<h2>Тренажер швидкості</h2>
+<p>Правило чистих повторів: зіграйте вправу задану кількість разів поспіль без помилок, і темп піднімається автоматично. Помилка обнуляє лічильник. Темп і старт метронома можна змінювати прямо тут.</p>
+<div class="row"><label>Вправа <input type="text" id="sp-name" value="Вправа 1" maxlength="30"></label><label>Чистих повторів <input type="number" id="sp-target" value="5" min="1" max="20"></label><label>Крок темпу <input type="number" id="sp-step" value="4" min="1" max="20"></label></div>
+<div class="row"><button class="btn pri" id="sp-met" style="min-width:150px">Старт метронома</button><span class="info" style="margin:0">Темп: <b id="sp-bpm"></b> уд/хв</span><button class="btn" data-sd="-5">−5</button><button class="btn" data-sd="-1">−1</button><button class="btn" data-sd="1">+1</button><button class="btn" data-sd="5">+5</button></div>
+<div class="row"><span class="big" id="sp-count">0 / 5</span><button class="btn pri" id="sp-ok">Чисто, +1</button><button class="btn" id="sp-bad">Помилка, обнулити</button></div>
+<div class="fb" id="sp-fb"></div>
+<div class="row"><button class="btn" id="sp-save">Зберегти поточний темп як рекорд</button></div>
+<div class="info" id="sp-best"></div>
+</div>
+
+<div class="card view" data-title="Таймер заняття">
+<h2>Таймер заняття</h2>
+<div class="row" id="tm-pre"></div>
+<div class="row"><label>Робота, хв <input type="number" id="tm-w" value="10" min="0.5" step="0.5"></label><label>Пауза, хв <input type="number" id="tm-r" value="2" min="0" step="0.5"></label><label>Раундів <input type="number" id="tm-k" value="3" min="1" max="20"></label><button class="btn" id="tm-build">Побудувати</button></div>
+<div class="big" id="tm-time" style="font-size:52px">00:00</div>
+<div class="info" id="tm-seg"></div>
+<div class="prog-bar"><i id="tm-bar"></i></div>
+<div class="row"><button class="btn pri" id="tm-go" style="min-width:110px">Старт</button><button class="btn" id="tm-skip">Пропустити</button><button class="btn" id="tm-reset">Скинути</button></div>
+<ol class="steps" id="tm-list"></ol>
+<p class="info" id="tm-log"></p>
+</div>
+</section>
+
+<section class="pane" id="p-plan" hidden>
+<h1>Як вчитися</h1>
+<p class="lead">Порядок і регулярність важать більше, ніж кількість годин. Нижче план заняття, поради та чекліст прогресу.</p>
+
+<div class="card view" data-title="Заняття на 30 хв">
+<h2>Заняття на 30 хвилин</h2>
+<div class="tw"><table class="tbl">
+<tr><th>Хвилини</th><th>Що робити</th></tr>
+<tr><td>5</td><td>Розігрів: хроматична вправа 1–2–3–4 на всіх струнах під метроном.</td></tr>
+<tr><td>7</td><td>Акорди: перемикання між двома-трьома акордами, тест «одна хвилина».</td></tr>
+<tr><td>8</td><td>Гама або позиція: одна позиція вгору і вниз, потім імпровізація по ній під бекінг-трек.</td></tr>
+<tr><td>5</td><td>Гриф: тренажер нот або інтервалів на слух.</td></tr>
+<tr><td>5</td><td>Пісня або мелодія, яку хочете зіграти. Це головна мотивація.</td></tr></table></div>
+</div>
+
+<div class="two view" data-title="Акорди й гриф">
+<div class="card">
+<h2>Як вчити акорди</h2>
+<ul class="tips">
+<li>Вчіть акорди сім’ями: Em, Am, E, A, D, G, C дають сотні пісень.</li>
+<li>Добирайте переходи з мінімальним рухом, де пальці залишаються на місці (Am–C, A–D–E).</li>
+<li>Тест «одна хвилина»: порахуйте чисті переходи між двома акордами за 60 секунд. Мета, 30 і більше.</li>
+<li>Перевіряйте чистоту арпеджіо: зіграйте акорд по одній струні й слухайте, чи кожна дзвенить.</li>
+<li>Вчіть акорди як ступені тональності (I, IV, V), а не як окремі форми: так легше транспонувати.</li>
+<li>Барре вчіть після відкритих акордів, через форми E і A, які пересуваються грифом (див. CAGED).</li>
+</ul>
+</div>
+<div class="card">
+<h2>Як вчити гриф</h2>
+<ul class="tips">
+<li>За раз тренуйте одну струну. Називайте ноту вголос, знаходьте її й граєте.</li>
+<li>Спершу вивчіть шосту та п’яту струни до 12-го ладу, потім переходьте до решти.</li>
+<li>Вчіть октавні форми: вони дозволяють знайти ту саму ноту на іншій струні без рахунку.</li>
+<li>Коли нота названа, назвіть ще її квінту й терцію. Так нотам додається сенс.</li>
+<li>Користуйтеся тренажером на цій сторінці по 5 хвилин щодня.</li>
+</ul>
+</div>
+</div>
+
+<div class="card view" data-title="Теорія">
+<h2>Як вчити теорію</h2>
+<ol class="steps">
+<li>Ноти й півтони: ви вже знаєте, що між E–F та B–C півтон.</li>
+<li>Інтервали: вчіть терцію, квінту й октаву на грифі та на слух.</li>
+<li>Мажорна гама за формулою 2 2 1 2 2 2 1 у будь-якій тональності.</li>
+<li>Тризвуччя: стек з двох терцій, чотири види (мажорне, мінорне, зменшене, збільшене).</li>
+<li>Акорди тональності: як будуються I, ii, iii, IV, V, vi, vii° і навіщо вони потрібні.</li>
+<li>Лади й пентатоніка: нові гами як зміщення тоніки та додані ноти.</li>
+<li>Септакорди й інверсії: колір акордів і плавне голосоведення.</li>
+</ol>
+</div>
+
+<div class="card view" data-title="Чекліст">
+<h2>Чекліст прогресу</h2>
+<div class="prog-bar"><i id="pl-bar"></i></div>
+<p class="info" id="pl-txt"></p>
+<div id="pl-list"></div>
+</div>
+</section>
+
+</main>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+var LET=['C','D','E','F','G','A','B'],LPC=[0,2,4,5,7,9,11];
+var ROOTS=[
+{pc:0,a:['C',0],b:['C',0]},
+{pc:1,a:['D♭',1],b:['C♯',0],lab:'C♯ / D♭'},
+{pc:2,a:['D',1],b:['D',1]},
+{pc:3,a:['E♭',2],b:['E♭',2]},
+{pc:4,a:['E',2],b:['E',2]},
+{pc:5,a:['F',3],b:['F',3]},
+{pc:6,a:['F♯',3],b:['F♯',3]},
+{pc:7,a:['G',4],b:['G',4]},
+{pc:8,a:['A♭',5],b:['G♯',4],lab:'G♯ / A♭'},
+{pc:9,a:['A',5],b:['A',5]},
+{pc:10,a:['B♭',6],b:['B♭',6]},
+{pc:11,a:['B',6],b:['B',6]}
+];
+function getRoot(i,minor){var r=ROOTS[i],x=minor?r.b:r.a;return {n:x[0],l:x[1],pc:r.pc};}
+function rootOpts(sel,def){sel.innerHTML=ROOTS.map(function(r,i){return '<option value="'+i+'">'+(r.lab||r.a[0])+'</option>';}).join('');sel.value=def;}
+function spell(R,s,d){
+var li=(R.l+d)%7,tp=(R.pc+s)%12,df=((tp-LPC[li])%12+12)%12;
+if(df>6)df-=12;
+var a=df===0?'':df===1?'♯':df===-1?'♭':df===2?'♯♯':df===-2?'♭♭':'';
+return LET[li]+a;
+}
+var SHARP=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+var TOP=[24,19,15,10,5,0],LOW=[0,5,10,15,19,24],SN=['e','B','G','D','A','E'];
+function pcOf(p){return ((p+4)%12+12)%12;}
+function relOf(R){return ((R.pc-4)%12+12)%12;}
+var md=function(a,b){return ((a%b)+b)%b;};
+
+var AC=null,CACHE={};
+function ac(){
+if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){AC=null;}}
+if(AC&&AC.state==='suspended'){try{AC.resume();}catch(e){}}
+return AC;
+}
+function pluck(p,delay){
+var c=ac();if(!c)return;
+var f=82.4069*Math.pow(2,p/12),sr=c.sampleRate,N=Math.max(2,Math.round(sr/f)),b=CACHE[N],i;
+if(!b){
+var len=Math.floor(sr*1.8),buf=c.createBuffer(1,len,sr),d=buf.getChannelData(0),ln=new Float32Array(N),k=0;
+for(i=0;i<N;i++)ln[i]=Math.random()*2-1;
+for(i=0;i<len;i++){var a=ln[k],nx=ln[(k+1)%N];d[i]=a;ln[k]=0.997*0.5*(a+nx);k=(k+1)%N;}
+b=CACHE[N]=buf;
+}
+var s=c.createBufferSource();s.buffer=b;s.playbackRate.value=f*(N+0.5)/sr;
+var g=c.createGain();g.gain.value=0.45;s.connect(g);g.connect(c.destination);
+s.start(c.currentTime+(delay||0));
+}
+function strum(ps,gap){ps.forEach(function(p,i){pluck(p,i*(gap||0.05));});}
+
+var P={root:'#E0452B',pearl:'#F1E9D3',pearlS:'#8C7A5A',amber:'#F3B94A',teal:'#5CC4B3',blue:'#7DA7F2',violet:'#B69CF2',pink:'#F08DAE',dark:'#22170F',green:'#58D18F'};
+var BX=76,BF=37.6,BY=44,BS=34,NF=24;
+var bx=function(f){return f===0?BX-30:BX+(f-0.5)*BF;};
+var bw=function(w){return BX+w*BF;};
+var by=function(i){return BY+i*BS;};
+function drawBoard(svg,mks,rows,opt){
+opt=opt||{};rows=rows||[];
+var nv=opt.nv||NF;BF=902/nv;
+var top=by(0)-22,bot=by(5)+22,h='',i,w,f;
+h+='<rect x="'+BX+'" y="'+top+'" width="'+(nv*BF)+'" height="'+(bot-top)+'" fill="#3A2419"/>';
+for(w=1;w<=nv;w++)h+='<line x1="'+bw(w)+'" y1="'+top+'" x2="'+bw(w)+'" y2="'+bot+'" stroke="#C3C8CA" stroke-width="1.4"/>';
+h+='<rect x="'+(BX-5)+'" y="'+top+'" width="6" height="'+(bot-top)+'" fill="#EFE9D6"/>';
+for(i=0;i<6;i++){
+h+='<line x1="'+(BX-5)+'" y1="'+by(i)+'" x2="'+bw(nv)+'" y2="'+by(i)+'" stroke="#D2D6D8" stroke-width="'+(0.9+i*0.45)+'"/>';
+h+='<text x="16" y="'+by(i)+'" text-anchor="middle" dominant-baseline="central" style="fill:var(--muted);font-size:13px">'+SN[i]+'</text>';
+}
+(opt.bands||[]).forEach(function(bd){
+if(bd.lo>nv)return;
+var x1=bd.lo===0?BX-44:bw(bd.lo-1)+2,x2=bw(Math.min(bd.hi,nv))-2;
+h+='<rect x="'+x1+'" y="'+(top+3)+'" width="'+(x2-x1)+'" height="'+(bot-top-6)+'" rx="10" fill="#5CC4B3" fill-opacity="0.2" stroke="#5CC4B3" stroke-width="2"/>';
+});
+var INL=[3,5,7,9,12,15,17,19,21,24];
+for(f=1;f<=nv;f++){
+var ink=INL.indexOf(f)>=0;
+if(ink){
+if(f===12||f===24)h+='<circle cx="'+(bx(f)-7)+'" cy="'+(bot+9)+'" r="3.5" fill="#8A6C56"/><circle cx="'+(bx(f)+7)+'" cy="'+(bot+9)+'" r="3.5" fill="#8A6C56"/>';
+else h+='<circle cx="'+bx(f)+'" cy="'+(bot+9)+'" r="3.5" fill="#8A6C56"/>';
+}
+h+='<text x="'+bx(f)+'" y="'+(bot+28)+'" text-anchor="middle" style="fill:'+(ink?'var(--ink)':'var(--muted)')+';font-size:12px;font-weight:'+(ink?600:400)+'">'+f+'</text>';
+}
+mks.forEach(function(m){
+if(m.f>nv)return;
+var x=bx(m.f),y=by(m.s),r=m.r||15;
+h+='<g class="'+(opt.noplay?'':'mk')+'" data-s="'+m.s+'" data-f="'+m.f+'" opacity="'+(m.op||1)+'"><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(m.fill||P.pearl)+'" stroke="'+(m.st||P.pearlS)+'" stroke-width="'+(m.sw||1)+'"/>';
+if(m.l)h+='<text x="'+x+'" y="'+y+'" text-anchor="middle" dominant-baseline="central" style="fill:'+(m.tc||P.dark)+';font-size:'+(m.fs||13)+'px;font-weight:600;pointer-events:none">'+m.l+'</text>';
+h+='</g>';
+});
+var y0=bot+46;
+rows.forEach(function(r,k){
+var y=y0+k*24;
+r.items.forEach(function(it){
+if(it.lo>nv)return;
+var x1=it.lo===0?BX-46:bw(it.lo-1)+3,x2=bw(Math.min(it.hi,nv))-3;
+var fill=r.color?r.color:'var(--bar-'+(k%2?'b':'a')+')';
+var tc=r.color?P.dark:(k%2?'var(--bar-t2)':'var(--bar-t)');
+h+='<g'+(it.pos?' class="bar" data-pos="'+it.pos+'"':'')+'><rect x="'+x1+'" y="'+y+'" width="'+(x2-x1)+'" height="20" rx="5" style="fill:'+fill+(it.sel?';stroke:var(--ink);stroke-width:2':'')+'"/>';
+h+='<text x="'+((x1+x2)/2)+'" y="'+(y+10)+'" text-anchor="middle" dominant-baseline="central" style="fill:'+tc+';font-size:12px;font-weight:600;pointer-events:none">'+((x2-x1<84&&it.short)?it.short:it.label)+'</text></g>';
+});
+});
+if(opt.hits){
+var f0=opt.f0||0,f1=opt.f1||nv;
+for(i=0;i<6;i++)for(f=f0;f<=f1;f++)h+='<circle class="hit" cx="'+bx(f)+'" cy="'+by(i)+'" r="18" fill="transparent" data-s="'+i+'" data-f="'+f+'"/>';
+}
+var H=rows.length?(y0+rows.length*24+8):(bot+38);
+svg.setAttribute('viewBox','0 0 1000 '+H);
+svg.innerHTML=h;
+}
+document.addEventListener('click',function(e){
+var t=e.target.closest&&e.target.closest('.mk');
+if(t){pluck(TOP[+t.getAttribute('data-s')]+(+t.getAttribute('data-f')));}
+});
+
+function posRows(ps,r,only){
+var n=ps.length,k=n===5?2:3,rows=[],win=0;
+var Pf=function(idx){return 12*Math.floor(idx/n)+ps[md(idx,n)];};
+for(var d=0;d<n;d++){
+var items=[],best=null;
+for(var m=-2;m<=4;m++){
+var j0=d+n*m,cnt=0,lo=99,hi=-1,ns=[];
+for(var i=0;i<6;i++)for(var t=0;t<k;t++){var fr=r+Pf(j0+i*k+t)-LOW[i];if(fr>=0&&fr<=NF){cnt++;ns.push((5-i)+','+fr);if(fr<lo)lo=fr;if(fr>hi)hi=fr;}}
+if(cnt>=4&&hi>lo){
+var it={lo:lo,hi:hi,pos:d+1,label:'Поз. '+(d+1),short:String(d+1),ns:ns};
+items.push(it);
+if(cnt===6*k&&!best)best=it;
+}
+}
+if(only){var pick=best||items[0];rows.push({items:pick?[pick]:[]});if(pick&&pick.hi>win)win=pick.hi;}
+else rows.push({items:items});
+}
+rows.sort(function(a,b){var x=a.items[0]?a.items[0].lo:99,y=b.items[0]?b.items[0].lo:99;return (x-y)||((a.items[0]?a.items[0].pos:0)-(b.items[0]?b.items[0].pos:0));});
+return {rows:rows,win:win};
+}
+
+function H7(s,l){return s.map(function(x,i){return [x,l[i],i];});}
+var SC={
+minpent:{t:'Мінорна пентатоніка',n:[[0,'R',0],[3,'♭3',2],[5,'4',3],[7,'5',4],[10,'♭7',6]],dark:1},
+majpent:{t:'Мажорна пентатоніка',n:[[0,'R',0],[2,'2',1],[4,'3',2],[7,'5',4],[9,'6',5]]},
+blues:{t:'Блюзова гама',n:[[0,'R',0],[3,'♭3',2],[5,'4',3],[6,'♭5',4],[7,'5',4],[10,'♭7',6]],pos:[0,3,5,7,10],dark:1},
+ion:{t:'Іонійський (мажор)',n:H7([0,2,4,5,7,9,11],['R','2','3','4','5','6','7'])},
+dor:{t:'Дорійський',n:H7([0,2,3,5,7,9,10],['R','2','♭3','4','5','6','♭7']),dark:1},
+phr:{t:'Фрігійський',n:H7([0,1,3,5,7,8,10],['R','♭2','♭3','4','5','♭6','♭7']),dark:1},
+lyd:{t:'Лідійський',n:H7([0,2,4,6,7,9,11],['R','2','3','♯4','5','6','7'])},
+mix:{t:'Міксолідійський',n:H7([0,2,4,5,7,9,10],['R','2','3','4','5','6','♭7'])},
+aeo:{t:'Еолійський (натуральний мінор)',n:H7([0,2,3,5,7,8,10],['R','2','♭3','4','5','♭6','♭7']),dark:1},
+loc:{t:'Локрійський',n:H7([0,1,3,5,6,8,10],['R','♭2','♭3','4','♭5','♭6','♭7']),dark:1},
+harm:{t:'Гармонічний мінор',n:H7([0,2,3,5,7,8,11],['R','2','♭3','4','5','♭6','7']),dark:1},
+mel:{t:'Мелодичний мінор',n:H7([0,2,3,5,7,9,11],['R','2','♭3','4','5','6','7']),dark:1}
+};
+var SHORT={minpent:'Мінорна',majpent:'Мажорна',blues:'Блюзова',ion:'Іонійський',dor:'Дорійський',phr:'Фрігійський',lyd:'Лідійський',mix:'Міксолідійський',aeo:'Еолійський',loc:'Локрійський',harm:'Гармонічний мінор',mel:'Мелодичний мінор'};
+var GROUPS=[['Пентатоніки',['minpent','majpent','blues']],['Діатонічні лади',['ion','dor','phr','lyd','mix','aeo','loc']],['Інші мінори',['harm','mel']]];
+var sS={k:'minpent',ri:4,full:false,pos:0};
+var LBN=true;
+function sGroupOf(k){for(var i=0;i<GROUPS.length;i++)if(GROUPS[i][1].indexOf(k)>=0)return i;return 0;}
+
+function initScales(){
+rootOpts($('#s-root'),4);
+$('#s-root').onchange=function(){sS.ri=+this.value;drawScales();};
+$('#s-grp').innerHTML=GROUPS.map(function(g,i){return '<button data-g="'+i+'">'+g[0]+'</button>';}).join('');
+$$('#s-grp button').forEach(function(b){b.onclick=function(){var gi=+this.getAttribute('data-g');if(sGroupOf(sS.k)!==gi)sS.k=GROUPS[gi][1][0];sS.pos=0;drawScales();};});
+$('#s-svg').addEventListener('click',function(e){var bb=e.target.closest&&e.target.closest('.bar');if(bb){var n=+bb.getAttribute('data-pos');sS.pos=sS.pos===n?0:n;drawScales();}});
+$('#s-v-pos').onclick=function(){sS.full=false;drawScales();};
+$('#s-v-full').onclick=function(){sS.full=true;drawScales();};
+$('#s-play').onclick=function(){
+var sc=SC[sS.k],R=getRoot(sS.ri,!!sc.dark),base=relOf(R)+12;
+var semis=sc.n.map(function(e){return e[0];}).concat([12]);
+semis.forEach(function(s,i){pluck(base+s,i*0.32);});
+};
+drawScales();
+}
+function drawScales(){
+var sc=SC[sS.k],R=getRoot(sS.ri,!!sc.dark),r=relOf(R);
+var gi=sGroupOf(sS.k);
+$$('#s-grp button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-g')===gi);});
+$('#s-chips').innerHTML=GROUPS[gi][1].map(function(k){return '<button class="btn'+(k===sS.k?' on':'')+'" data-k="'+k+'">'+SHORT[k]+'</button>';}).join('');
+$$('#s-chips button').forEach(function(b){b.onclick=function(){sS.k=this.getAttribute('data-k');sS.pos=0;drawScales();};});
+var M={};sc.n.forEach(function(e){M[e[0]]=e;});
+var has3=sc.n.some(function(e){return e[0]===3;});
+var par=has3?[0,3,5,7,10]:[0,2,4,7,9];
+var mks=[];
+var ps=(sc.pos||sc.n.map(function(e){return e[0];})).slice().sort(function(a,b){return a-b;});
+var pr=posRows(ps,r,!sS.full);
+var nv=sS.full?NF:Math.max(12,pr.win);
+$('#s-v-pos').classList.toggle('on',!sS.full);$('#s-v-full').classList.toggle('on',sS.full);
+if(sS.pos>ps.length)sS.pos=0;
+var sel=null,bands=[];
+if(sS.pos){sel={};pr.rows.forEach(function(rw){rw.items.forEach(function(it){if(it.pos===sS.pos){it.ns.forEach(function(x){sel[x]=1;});it.sel=true;bands.push({lo:it.lo,hi:it.hi});}});});}
+for(var i=0;i<6;i++)for(var f=0;f<=nv;f++){
+var s=md(TOP[i]+f-r,12),e=M[s];
+if(!e)continue;
+var root=s===0,extra=par.indexOf(s)<0&&!root,inSel=sel&&sel[i+','+f];
+mks.push({s:i,f:f,fill:root?P.root:(extra?P.amber:P.pearl),st:inSel?'#5CC4B3':(root?'#FFB4A6':(extra?'#9A6A10':P.pearlS)),sw:inSel?3:1,op:(sel&&!inSel)?0.22:1,tc:root?'#fff':P.dark,l:LBN?spell(R,s,e[2]):e[1]});
+}
+drawBoard($('#s-svg'),mks,pr.rows,{nv:nv,bands:bands});
+$('#s-info').textContent=R.n+': '+sc.t+'. Ноти: '+sc.n.map(function(e){return spell(R,e[0],e[2]);}).join(' ')+'. Формула: '+sc.n.map(function(e){return e[1];}).join(' ')+'. '+(sS.full?'Весь гриф, 24 лади.':'Лади 0–'+nv+': кожна позиція видна повністю.')+(sS.pos?' Виділено позицію '+sS.pos+'.':' Натисніть на смугу під грифом, щоб виділити позицію.');
+}
+
+var nS={sel:-1,acc:false};
+function initNotes(){
+var h='<button class="btn on" data-p="-1">Усі</button>';
+SHARP.forEach(function(n,i){h+='<button class="btn" data-p="'+i+'">'+n+'</button>';});
+$('#n-chips').innerHTML=h;
+$$('#n-chips button').forEach(function(b){b.onclick=function(){nS.sel=+this.getAttribute('data-p');drawNotes();};});
+$('#n-acc').onclick=function(){nS.acc=!nS.acc;this.classList.toggle('on',nS.acc);drawNotes();};
+var tn='';
+for(var i=5;i>=0;i--)tn+='<button class="btn" data-i="'+i+'">'+(6-i)+' струна: '+SN[i]+'</button>';
+$('#n-tune').innerHTML=tn+'<button class="btn pri" id="n-all">Усі струни</button>';
+$$('#n-tune button[data-i]').forEach(function(b){b.onclick=function(){pluck(TOP[+this.getAttribute('data-i')]);};});
+$('#n-all').onclick=function(){strum(LOW.slice(),0.45);};
+drawNotes();
+}
+function drawNotes(){
+$$('#n-chips button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-p')===nS.sel);});
+var mks=[];
+for(var i=0;i<6;i++)for(var f=0;f<=NF;f++){
+var pc=pcOf(TOP[i]+f),nat=LPC.indexOf(pc)>=0;
+if(nS.sel<0){
+if(nat||nS.acc)mks.push({s:i,f:f,fill:nat?P.pearl:P.amber,st:nat?P.pearlS:'#9A6A10',l:SHARP[pc],fs:12});
+}else if(pc===nS.sel){
+mks.push({s:i,f:f,fill:P.root,st:'#FFB4A6',tc:'#fff',l:SHARP[pc]});
+}else{
+mks.push({s:i,f:f,fill:'#8A735E',st:'none',r:3.5});
+}
+}
+drawBoard($('#n-svg'),mks,[]);
+}
+
+var QUAL={
+maj:{t:'Мажорне',suf:'',n:[[0,'R',0],[4,'3',2],[7,'5',4]]},
+min:{t:'Мінорне',suf:'m',n:[[0,'R',0],[3,'♭3',2],[7,'5',4]]},
+dim:{t:'Зменшене',suf:'dim',n:[[0,'R',0],[3,'♭3',2],[6,'♭5',4]]},
+aug:{t:'Збільшене',suf:'aug',n:[[0,'R',0],[4,'3',2],[8,'♯5',4]]},
+sus2:{t:'Sus2',suf:'sus2',n:[[0,'R',0],[2,'2',1],[7,'5',4]]},
+sus4:{t:'Sus4',suf:'sus4',n:[[0,'R',0],[5,'4',3],[7,'5',4]]},
+maj7:{t:'Maj7',suf:'maj7',n:[[0,'R',0],[4,'3',2],[7,'5',4],[11,'7',6]]},
+dom7:{t:'Домінантсептакорд',suf:'7',n:[[0,'R',0],[4,'3',2],[7,'5',4],[10,'♭7',6]]},
+m7:{t:'Мінорний септакорд',suf:'m7',n:[[0,'R',0],[3,'♭3',2],[7,'5',4],[10,'♭7',6]]},
+m7b5:{t:'Напівзменшений',suf:'m7♭5',n:[[0,'R',0],[3,'♭3',2],[6,'♭5',4],[10,'♭7',6]]},
+dim7:{t:'Зменшений септакорд',suf:'dim7',n:[[0,'R',0],[3,'♭3',2],[6,'♭5',4],[9,'♭♭7',6]]},
+six:{t:'Секстакорд',suf:'6',n:[[0,'R',0],[4,'3',2],[7,'5',4],[9,'6',5]]},
+add9:{t:'Add9',suf:'add9',n:[[0,'R',0],[2,'9',1],[4,'3',2],[7,'5',4]]}
+};
+var QORDER=['maj','min','dim','aug','sus2','sus4','maj7','dom7','m7','m7b5','dim7','six','add9'];
+var QNAME={maj:'Мажорне тризвуччя',min:'Мінорне тризвуччя',dim:'Зменшене тризвуччя',aug:'Збільшене тризвуччя',sus2:'Sus2',sus4:'Sus4',maj7:'Maj7',dom7:'Домінантсептакорд (7)',m7:'Мінорний септакорд (m7)',m7b5:'Напівзменшений (m7♭5)',dim7:'Зменшений септакорд (dim7)',six:'Секстакорд (6)',add9:'Add9'};
+var TRI=['maj','min','dim','aug','sus2','sus4'];
+var cS={ri:4,q:'min',tq:'maj',tset:3,names:false,gminor:false};
+function roleFill(d){return d===0?P.root:(d===4?P.teal:(d>=5?P.violet:P.amber));}
+function fmtFormula(q){return QUAL[q].n.map(function(e){return e[1];}).join(' ');}
+
+function initChords(){
+rootOpts($('#c-root'),4);
+$('#c-root').onchange=function(){cS.ri=+this.value;drawChords();};
+$('#c-qual').innerHTML=QORDER.map(function(k){return '<option value="'+k+'">'+QNAME[k]+'</option>';}).join('');
+$('#c-qual').value=cS.q;
+$('#c-qual').onchange=function(){cS.q=this.value;drawChordA();};
+$('#c-play').onclick=function(){
+var R=getRoot(cS.ri,false),base=relOf(R)+12,q=QUAL[cS.q];
+var ps=q.n.map(function(e){return base+e[0];});
+strum(ps,0.22);
+setTimeout(function(){strum(ps,0.04);},ps.length*220+400);
+};
+$('#t-qual').innerHTML=TRI.map(function(k){return '<option value="'+k+'">'+QNAME[k]+'</option>';}).join('');
+$('#t-qual').onchange=function(){cS.tq=this.value;drawTriads();};
+var sets=[[3,'струни 1–2–3 (e B G)'],[2,'струни 2–3–4 (B G D)'],[1,'струни 3–4–5 (G D A)'],[0,'струни 4–5–6 (D A E)']];
+$('#t-sets').innerHTML=sets.map(function(s){return '<button class="btn" data-a="'+s[0]+'">'+s[1]+'</button>';}).join('');
+$$('#t-sets button').forEach(function(b){b.onclick=function(){cS.tset=+this.getAttribute('data-a');drawTriads();};});
+$('#g-maj').onclick=function(){cS.gminor=false;drawCaged();};
+$('#g-min').onclick=function(){cS.gminor=true;drawCaged();};
+buildGallery();
+drawChords();
+}
+function drawChords(){drawChordA();drawTriads();drawCaged();}
+function drawChordA(){
+var R=getRoot(cS.ri,false),r=relOf(R),q=QUAL[cS.q];
+var M={};q.n.forEach(function(e){M[e[0]]=e;});
+var mks=[];
+for(var i=0;i<6;i++)for(var f=0;f<=NF;f++){
+var s=md(TOP[i]+f-r,12),e=M[s];
+if(!e)continue;
+var fill=roleFill(e[2]);
+mks.push({s:i,f:f,fill:fill,st:'rgba(0,0,0,.35)',tc:e[2]===0?'#fff':P.dark,l:LBN?spell(R,e[0],e[2]):e[1]});
+}
+drawBoard($('#c-svg'),mks,[]);
+$('#c-info').textContent=R.n+q.suf+': '+q.n.map(function(e){return spell(R,e[0],e[2]);}).join(' ')+'. Формула: '+fmtFormula(cS.q)+' ('+q.n.map(function(e){return e[0];}).join('–')+' півтонів від тоніки).';
+var h='<tr><th>Тип</th><th>Формула</th><th>Півтони</th><th>Ноти</th></tr>';
+QORDER.forEach(function(k){var Q=QUAL[k];h+='<tr><td>'+R.n+Q.suf+' ('+QNAME[k]+')</td><td>'+fmtFormula(k)+'</td><td>'+Q.n.map(function(e){return e[0];}).join(' ')+'</td><td>'+Q.n.map(function(e){return spell(R,e[0],e[2]);}).join(' ')+'</td></tr>';});
+$('#c-table').innerHTML=h;
+}
+var INVC=[P.teal,P.amber,P.violet];
+function drawTriads(){
+var R=getRoot(cS.ri,false),r=relOf(R),q=QUAL[cS.tq],sem=q.n.map(function(e){return e[0];}),lab=q.n.map(function(e){return e[1];});
+$$('#t-sets button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-a')===cS.tset);});
+$('#t-qual').value=cS.tq;
+var a=cS.tset,mks=[],orders=[[0,1,2],[1,2,0],[2,0,1]];
+orders.forEach(function(ord,inv){
+for(var fl=0;fl<=NF;fl++){
+var p0=LOW[a]+fl;
+if(md(p0-r,12)!==sem[ord[0]])continue;
+var p1=p0+md(sem[ord[1]]-sem[ord[0]],12),p2=p1+md(sem[ord[2]]-sem[ord[1]],12);
+var fr=[fl,p1-LOW[a+1],p2-LOW[a+2]];
+if(fr[1]<0||fr[2]<0||fr[1]>NF||fr[2]>NF)continue;
+if(Math.max.apply(null,fr)-Math.min.apply(null,fr)>5)continue;
+for(var k=0;k<3;k++){
+var isRoot=ord[k]===0;
+mks.push({s:5-(a+k),f:fr[k],fill:INVC[inv],st:isRoot?P.root:'rgba(0,0,0,.35)',sw:isRoot?3.5:1,l:LBN?spell(R,sem[ord[k]],q.n[ord[k]][2]):lab[ord[k]]});
+}
+}
+});
+drawBoard($('#t-svg'),mks,[]);
+}
+var CAGED={
+maj:[{n:'C',pc:0,f:[-1,3,2,0,1,0],c:P.teal},{n:'A',pc:9,f:[-1,0,2,2,2,0],c:P.amber},{n:'G',pc:7,f:[3,2,0,0,0,3],c:P.violet},{n:'E',pc:4,f:[0,2,2,1,0,0],c:P.blue},{n:'D',pc:2,f:[-1,-1,0,2,3,2],c:P.pink}],
+min:[{n:'E',pc:4,f:[0,2,2,0,0,0],c:P.blue},{n:'A',pc:9,f:[-1,0,2,2,1,0],c:P.amber},{n:'D',pc:2,f:[-1,-1,0,2,3,1],c:P.pink}]
+};
+var DEGL={0:'R',3:'♭3',4:'3',7:'5'},DEGD={0:0,3:2,4:2,7:4};
+function drawCaged(){
+var R=getRoot(cS.ri,cS.gminor),r=relOf(R),shapes=CAGED[cS.gminor?'min':'maj'],mks=[],rows=[];
+$('#g-maj').classList.toggle('on',!cS.gminor);$('#g-min').classList.toggle('on',cS.gminor);
+shapes.forEach(function(sh){
+var o=md(R.pc-sh.pc,12),items=[],mx=Math.max.apply(null,sh.f);
+[o,o+12].forEach(function(off){
+if(mx+off>NF)return;
+var lo=99,hi=-1;
+sh.f.forEach(function(fr,li){
+if(fr<0)return;
+var fret=fr+off,p=LOW[li]+fret,t=md(p-r,12),isRoot=t===0;
+if(fret<lo)lo=fret;if(fret>hi)hi=fret;
+mks.push({s:5-li,f:fret,fill:isRoot?P.root:sh.c,st:'rgba(0,0,0,.35)',tc:isRoot?'#fff':P.dark,l:LBN?(DEGD[t]!==undefined?spell(R,t,DEGD[t]):''):(DEGL[t]||'')});
+});
+items.push({lo:lo,hi:hi,label:sh.n+'-форма',short:sh.n});
+});
+rows.push({color:sh.c,items:items});
+});
+rows.sort(function(a,b){return a.items[0].lo-b.items[0].lo;});
+drawBoard($('#g-svg'),mks,rows);
+}
+var LIB=[
+['Відкриті мажорні',[['C',[-1,3,2,0,1,0]],['A',[-1,0,2,2,2,0]],['G',[3,2,0,0,0,3]],['E',[0,2,2,1,0,0]],['D',[-1,-1,0,2,3,2]]]],
+['Відкриті мінорні',[['Am',[-1,0,2,2,1,0]],['Em',[0,2,2,0,0,0]],['Dm',[-1,-1,0,2,3,1]]]],
+['Домінантсептакорди',[['E7',[0,2,0,1,0,0]],['A7',[-1,0,2,0,2,0]],['D7',[-1,-1,0,2,1,2]],['G7',[3,2,0,0,0,1]],['C7',[-1,3,2,3,1,0]],['B7',[-1,2,1,2,0,2]]]],
+['Maj7, m7, sus',[['Cmaj7',[-1,3,2,0,0,0]],['Fmaj7',[-1,-1,3,2,1,0]],['Am7',[-1,0,2,0,1,0]],['Em7',[0,2,0,0,0,0]],['Dsus2',[-1,-1,0,2,3,0]],['Dsus4',[-1,-1,0,2,3,3]],['Asus2',[-1,0,2,2,0,0]],['Asus4',[-1,0,2,2,3,0]]]],
+['Барре',[['F',[1,3,3,2,1,1]],['Bm',[-1,2,4,4,3,2]],['B',[-1,2,4,4,4,2]],['F♯m',[2,4,4,2,2,2]],['B♭',[-1,1,3,3,3,1]]]]
+];
+function diagram(fr){
+var x0=22,dx=11.2,y0=30,dy=17,h='',i;
+h+='<svg viewBox="0 0 100 124" aria-hidden="true">';
+h+='<rect x="'+x0+'" y="'+(y0-2.5)+'" width="'+(dx*5)+'" height="3.5" style="fill:var(--ink)"/>';
+for(i=1;i<=5;i++)h+='<line x1="'+x0+'" y1="'+(y0+i*dy)+'" x2="'+(x0+dx*5)+'" y2="'+(y0+i*dy)+'" style="stroke:var(--muted)" stroke-width="1"/>';
+for(i=0;i<6;i++)h+='<line x1="'+(x0+i*dx)+'" y1="'+y0+'" x2="'+(x0+i*dx)+'" y2="'+(y0+5*dy)+'" style="stroke:var(--muted)" stroke-width="1"/>';
+fr.forEach(function(f,li){
+var x=x0+li*dx;
+if(f<0)h+='<text x="'+x+'" y="'+(y0-10)+'" text-anchor="middle" style="fill:var(--muted);font-size:11px">×</text>';
+else if(f===0)h+='<circle cx="'+x+'" cy="'+(y0-11)+'" r="3.2" fill="none" style="stroke:var(--muted)" stroke-width="1.2"/>';
+else h+='<circle cx="'+x+'" cy="'+(y0+(f-0.5)*dy)+'" r="5" style="fill:var(--accent)"/>';
+});
+return h+'</svg>';
+}
+var galG=0;
+function buildGallery(){
+var h='<div class="grp" id="gal-chips">'+LIB.map(function(g,i){return '<button class="btn'+(i===galG?' on':'')+'" data-g="'+i+'">'+g[0]+'</button>';}).join('')+'</div><div class="gal">';
+LIB[galG][1].forEach(function(c,ci){h+='<button class="cd" data-c="'+ci+'" aria-label="Акорд '+c[0]+'">'+diagram(c[1])+'<b>'+c[0]+'</b></button>';});
+h+='</div>';
+$('#c-gal').innerHTML=h;
+$$('#gal-chips button').forEach(function(b){b.onclick=function(){galG=+this.getAttribute('data-g');buildGallery();};});
+$$('#c-gal .cd').forEach(function(b){b.onclick=function(){
+var c=LIB[galG][1][+this.getAttribute('data-c')][1],ps=[];
+c.forEach(function(f,li){if(f>=0)ps.push(LOW[li]+f);});
+strum(ps,0.05);
+};});
+}
+
+var INTS=[[0,'Унісон','P1','той самий звук'],[1,'Мала секунда','m2','тісний, напружений'],[2,'Велика секунда','M2','крок мажорної гами'],[3,'Мала терція','m3','сумна терція мінору'],[4,'Велика терція','M3','світла терція мажору'],[5,'Чиста кварта','P4','стійкий, відкритий'],[6,'Тритон','♭5 / ♯4','нестабільний, потребує розв’язання'],[7,'Чиста квінта','P5','потужний, основа power-акордів'],[8,'Мала секста','m6','теплий, трохи сумний'],[9,'Велика секста','M6','світлий, відкритий'],[10,'Мала септима','m7','блюзовий, «підвішений»'],[11,'Велика септима','M7','мрійливий, тягнеться до тоніки'],[12,'Октава','P8','та сама нота вище']];
+var MODES=[['Іонійський','мажор','R 2 3 4 5 6 7','яскравий, стабільний','Imaj7'],['Дорійський','мінор з великою секстою','R 2 ♭3 4 5 6 ♭7','джаз, фанк, рок-балади','Im7'],['Фрігійський','мінор з ♭2','R ♭2 ♭3 4 5 ♭6 ♭7','іспанський колорит, метал','Im'],['Лідійський','мажор з ♯4','R 2 3 ♯4 5 6 7','мрійливий, кінематографічний','Imaj7♯11'],['Міксолідійський','мажор з ♭7','R 2 3 4 5 6 ♭7','блюз-рок, фолк','I7'],['Еолійський','натуральний мінор','R 2 ♭3 4 5 ♭6 ♭7','сумний, класичний мінор','Im7'],['Локрійський','мінор з ♭2 і ♭5','R ♭2 ♭3 4 ♭5 ♭6 ♭7','нестабільний, рідко як тоніка','Im7♭5']];
+var MAJPC=[0,7,2,9,4,11,6,1,8,3,10,5],SIG=[0,1,2,3,4,5,6,5,4,3,2,1];
+var kS={k:1,minor:true};
+var TONES={'':[0,4,7],'m':[0,3,7],'dim':[0,3,6],'7':[0,4,7,10],'m7':[0,3,7,10]};
+var RNMAJ={'I':[0,0,''],'ii':[2,1,'m'],'iii':[4,2,'m'],'IV':[5,3,''],'V':[7,4,''],'vi':[9,5,'m'],'vii°':[11,6,'dim'],'I7':[0,0,'7'],'IV7':[5,3,'7'],'V7':[7,4,'7']};
+var RNMIN={'i':[0,0,'m'],'ii°':[2,1,'dim'],'♭III':[3,2,''],'iv':[5,3,'m'],'v':[7,4,'m'],'V':[7,4,''],'♭VI':[8,5,''],'♭VII':[10,6,''],'i7':[0,0,'m7'],'iv7':[5,3,'m7'],'V7':[7,4,'7']};
+var PMAJ=[['Поп-прогресія',['I','V','vi','IV']],['Прогресія п’ятдесятих',['I','vi','IV','V']],['Три акорди',['I','IV','V']],['Каденція ii–V–I',['ii','V7','I']],['Дванадцятитактовий блюз',['I7','I7','I7','I7','IV7','IV7','I7','I7','V7','IV7','I7','V7']]];
+var PMIN=[['Андалузька каденція',['i','♭VII','♭VI','V']],['Мінорна прогресія',['i','♭VI','♭III','♭VII']],['Три акорди мінору',['i','iv','v']],['Мінорна каденція ii–V–i',['ii°','V7','i']],['Мінорний блюз',['i7','i7','i7','i7','iv7','iv7','i7','i7','V7','iv7','i7','V7']]];
+
+function initTheory(){
+var h='<tr><th>Півтонів</th><th>Інтервал</th><th>Позначення</th><th>Характер</th><th></th></tr>';
+INTS.forEach(function(e,i){h+='<tr><td>'+e[0]+'</td><td>'+e[1]+'</td><td>'+e[2]+'</td><td>'+e[3]+'</td><td><button class="btn" data-i="'+i+'">Зіграти</button></td></tr>';});
+$('#i-table').innerHTML=h;
+$$('#i-table button').forEach(function(b){b.onclick=function(){var s=INTS[+this.getAttribute('data-i')][0];pluck(19);pluck(19+s,0.6);};});
+var m='<tr><th>Лад</th><th>Що це</th><th>Формула</th><th>Звучання</th><th>Акорд</th></tr>';
+MODES.forEach(function(e){m+='<tr><td>'+e[0]+'</td><td>'+e[1]+'</td><td>'+e[2]+'</td><td>'+e[3]+'</td><td>'+e[4]+'</td></tr>';});
+$('#m-table').innerHTML=m;
+drawCircle();drawKey();
+}
+function drawCircle(){
+var h='<circle cx="170" cy="170" r="152" style="fill:var(--soft)"/><circle cx="170" cy="170" r="104" style="fill:var(--surface)"/>';
+for(var k=0;k<12;k++){
+var a=(-90+30*k)*Math.PI/180,sel=kS.k===k;
+var xm=170+128*Math.cos(a),ym=170+128*Math.sin(a),xn=170+78*Math.cos(a),yn=170+78*Math.sin(a);
+var sm=sel&&!kS.minor,sn=sel&&kS.minor;
+h+='<g data-k="'+k+'" data-m="0" style="cursor:pointer"><circle cx="'+xm+'" cy="'+ym+'" r="21" style="fill:'+(sm?'var(--accent)':'var(--surface)')+';stroke:var(--line)"/><text x="'+xm+'" y="'+ym+'" text-anchor="middle" dominant-baseline="central" style="fill:'+(sm?'var(--surface)':'var(--ink)')+';font-size:14px;font-weight:600">'+ROOTS[MAJPC[k]].a[0]+'</text></g>';
+h+='<g data-k="'+k+'" data-m="1" style="cursor:pointer"><circle cx="'+xn+'" cy="'+yn+'" r="17" style="fill:'+(sn?'var(--accent)':'var(--soft)')+';stroke:var(--line)"/><text x="'+xn+'" y="'+yn+'" text-anchor="middle" dominant-baseline="central" style="fill:'+(sn?'var(--surface)':'var(--muted)')+';font-size:12px;font-weight:600">'+getRoot(md(MAJPC[k]+9,12),true).n+'m</text></g>';
+}
+var sg=SIG[kS.k];
+h+='<text x="170" y="163" text-anchor="middle" style="fill:var(--muted);font-size:12px">знаків при ключі</text><text x="170" y="190" text-anchor="middle" style="fill:var(--ink);font-size:24px;font-family:Literata,Georgia,serif;font-weight:700">'+(sg===0?'0':sg+(kS.k<=6?'♯':'♭'))+'</text>';
+$('#k-svg').innerHTML=h;
+$$('#k-svg g').forEach(function(g){g.onclick=function(){kS.k=+this.getAttribute('data-k');kS.minor=this.getAttribute('data-m')==='1';drawCircle();drawKey();};});
+}
+function drawKey(){
+var majPc=MAJPC[kS.k],pc=kS.minor?md(majPc+9,12):majPc,R=getRoot(pc,kS.minor);
+var sc=kS.minor?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];
+var names=sc.map(function(s,i){return spell(R,s,i);});
+var base=['I','II','III','IV','V','VI','VII'];
+var fn=kS.minor?['тоніка','субдомінанта','тоніка','субдомінанта','домінанта','субдомінанта','домінанта']:['тоніка','субдомінанта','тоніка','субдомінанта','домінанта','тоніка','домінанта'];
+var rows='<tr><th>Ступінь</th><th>Тризвучча</th><th>Септакорд</th><th>Функція</th></tr>';
+for(var i=0;i<7;i++){
+var t=function(n){var x=i+n,s=sc[x%7]+(x>=7?12:0);return s-sc[i];};
+var t1=t(2),t2=t(4),t3=t(6),q,q7,rn=base[i];
+if(t1===4&&t2===7){q='';q7=t3===11?'maj7':'7';}
+else if(t1===3&&t2===7){q='m';q7=t3===10?'m7':'m(maj7)';rn=rn.toLowerCase();}
+else if(t1===3&&t2===6){q='dim';q7=t3===10?'m7♭5':'dim7';rn=rn.toLowerCase()+'°';}
+else{q='aug';q7='aug';rn+='+';}
+var nm=names[i];
+rows+='<tr><td>'+rn+'</td><td>'+nm+q+'</td><td>'+nm+q7+'</td><td>'+fn[i]+'</td></tr>';
+}
+var dict=kS.minor?RNMIN:RNMAJ,pr=kS.minor?PMIN:PMAJ;
+var ph='';
+pr.forEach(function(p,pi){
+ph+='<div class="prog"><div class="nm">'+p[0]+'</div>';
+var list=p[1].length>6?uniq(p[1]):p[1];
+list.forEach(function(rn){var e=dict[rn];ph+='<span class="pc"><b>'+spell(R,e[0],e[1])+e[2]+'</b><small>'+rn+'</small></span>';});
+ph+='<button class="btn" data-p="'+pi+'">Зіграти</button></div>';
+});
+$('#k-out').innerHTML='<h3 style="margin-top:0">'+R.n+(kS.minor?' мінор':' мажор')+'</h3><p class="info">Ноти: '+names.join(' ')+'. Паралельна тональність: '+getRoot(kS.minor?md(pc+3,12):md(pc+9,12),!kS.minor).n+(kS.minor?' мажор':' мінор')+'.</p><div class="tw"><table class="tbl">'+rows+'</table></div><h3>Типові прогресії в цій тональності</h3>'+ph;
+$$('#k-out button[data-p]').forEach(function(b){b.onclick=function(){
+var p=pr[+this.getAttribute('data-p')][1];
+p.forEach(function(rn,i){
+var e=dict[rn],cpc=md(R.pc+e[0],12),root=md(cpc-4,12)+12;
+setTimeout(function(){strum(TONES[e[2]].map(function(s){return root+s;}),0.035);},i*(p.length>6?650:900));
+});
+};});
+}
+function uniq(a){var o=[];a.forEach(function(x){if(o.indexOf(x)<0)o.push(x);});return o;}
+
+var qS={mode:'find',score:{ok:0,all:0,st:0,best:0},t:null,locked:false,range:12};
+try{var b0=localStorage.getItem('grif-best');if(b0)qS.score.best=+b0||0;}catch(e){}
+function qRand(a){return a[Math.floor(Math.random()*a.length)];}
+function initQuiz(){
+$('#q-find').onclick=function(){qS.mode='find';qNew();};
+$('#q-name').onclick=function(){qS.mode='name';qNew();};
+$('#q-range').onchange=function(){qS.range=+this.value;qNew();};
+$('#q-btns').innerHTML=['C','D','E','F','G','A','B'].map(function(n,i){return '<button class="btn" data-pc="'+LPC[i]+'">'+n+'</button>';}).join('');
+$$('#q-btns button').forEach(function(b){b.onclick=function(){qAnswerName(+this.getAttribute('data-pc'));};});
+$('#q-svg').addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.hit');if(t)qAnswerFind(+t.getAttribute('data-s'),+t.getAttribute('data-f'));});
+qNew();
+}
+function qScore(ok){
+var s=qS.score;s.all++;
+if(ok){s.ok++;s.st++;if(s.st>s.best){s.best=s.st;try{localStorage.setItem('grif-best',String(s.best));}catch(e){}}}else s.st=0;
+qShowScore();
+}
+function qShowScore(){var s=qS.score;$('#q-score').textContent='Правильно '+s.ok+' з '+s.all+'. Серія: '+s.st+'. Рекорд серії: '+s.best+'.';}
+function qNew(){
+qS.locked=false;
+$('#q-find').classList.toggle('on',qS.mode==='find');$('#q-name').classList.toggle('on',qS.mode==='name');
+$('#q-btns').style.display=qS.mode==='name'?'flex':'none';
+$('#q-fb').textContent='';$('#q-fb').className='fb';
+var f1=qS.range,hit={hits:true,f0:0,f1:f1,noplay:true,nv:f1};
+if(qS.mode==='find'){
+var i=Math.floor(Math.random()*6),pc=qRand(LPC);
+qS.t={s:i,pc:pc};
+$('#q-prompt').textContent='Знайдіть ноту '+SHARP[pc]+' на струні '+(i+1)+' ('+SN[i]+')';
+drawBoard($('#q-svg'),[],[],hit);
+}else{
+var cand=[];
+for(var s=0;s<6;s++)for(var f=0;f<=f1;f++)if(LPC.indexOf(pcOf(TOP[s]+f))>=0)cand.push([s,f]);
+var c=qRand(cand);
+qS.t={s:c[0],f:c[1],pc:pcOf(TOP[c[0]]+c[1])};
+$('#q-prompt').textContent='Яка це нота?';
+drawBoard($('#q-svg'),[{s:c[0],f:c[1],fill:P.root,st:'#FFB4A6',tc:'#fff',l:'?'}],[],{noplay:true,nv:qS.range});
+}
+qShowScore();
+}
+function qAnswerFind(s,f){
+if(qS.mode!=='find'||qS.locked)return;
+var t=qS.t,ok=s===t.s&&pcOf(TOP[s]+f)===t.pc;
+qS.locked=true;
+var mks=[],fix=[];
+for(var ff=0;ff<=qS.range;ff++)if(pcOf(TOP[t.s]+ff)===t.pc)fix.push(ff);
+if(ok){
+mks.push({s:s,f:f,fill:P.green,st:'#1E8A55',l:SHARP[t.pc]});
+$('#q-fb').textContent='Правильно.';$('#q-fb').className='fb ok';
+pluck(TOP[s]+f);
+}else{
+mks.push({s:s,f:f,fill:'#F27A6B',st:'#A32D2D',l:SHARP[pcOf(TOP[s]+f)]});
+fix.forEach(function(x){mks.push({s:t.s,f:x,fill:P.green,st:'#1E8A55',l:SHARP[t.pc]});});
+$('#q-fb').textContent=(s!==t.s?'Це інша струна. ':'Не та нота. ')+'Правильне місце позначене зеленим.';$('#q-fb').className='fb bad';
+}
+drawBoard($('#q-svg'),mks,[],{noplay:true,nv:qS.range});
+qScore(ok);
+setTimeout(qNew,ok?800:2200);
+}
+function qAnswerName(pc){
+if(qS.mode!=='name'||qS.locked)return;
+var t=qS.t,ok=pc===t.pc;
+qS.locked=true;
+drawBoard($('#q-svg'),[{s:t.s,f:t.f,fill:ok?P.green:'#F27A6B',st:ok?'#1E8A55':'#A32D2D',l:SHARP[t.pc]}],[],{noplay:true,nv:qS.range});
+$('#q-fb').textContent=ok?'Правильно.':'Це нота '+SHARP[t.pc]+'.';$('#q-fb').className='fb '+(ok?'ok':'bad');
+if(ok)pluck(TOP[t.s]+t.f);
+qScore(ok);
+setTimeout(qNew,ok?800:1800);
+}
+
+var eS={semi:0,base:0,ok:0,all:0,locked:false,asked:false};
+var EEASY=[3,4,5,7,12];
+function initEar(){
+function buttons(){
+var lv=$('#e-level').value,list=lv==='easy'?EEASY:[1,2,3,4,5,6,7,8,9,10,11,12];
+$('#e-btns').innerHTML=list.map(function(s){var it=INTS[s];return '<button class="btn" data-s="'+s+'">'+it[1]+' ('+it[2]+')</button>';}).join('');
+$$('#e-btns button').forEach(function(b){b.onclick=function(){eAnswer(+this.getAttribute('data-s'));};});
+}
+buttons();
+$('#e-level').onchange=function(){buttons();eNew(true);};
+$('#e-mode').onchange=function(){eNew(true);};
+$('#e-play').onclick=function(){if(!eS.asked)eNew(false);else ePlay();};
+$('#e-next').onclick=function(){eNew(false);};
+}
+function eNew(quiet){
+var lv=$('#e-level').value,list=lv==='easy'?EEASY:[1,2,3,4,5,6,7,8,9,10,11,12];
+eS.semi=qRand(list);eS.base=12+Math.floor(Math.random()*10);eS.locked=false;eS.asked=true;
+$('#e-fb').textContent='';$('#e-fb').className='fb';
+if(!quiet)ePlay();
+}
+function ePlay(){
+var har=$('#e-mode').value==='har';
+pluck(eS.base);pluck(eS.base+eS.semi,har?0.02:0.7);
+}
+function eAnswer(s){
+if(!eS.asked||eS.locked)return;
+eS.locked=true;eS.all++;
+var ok=s===eS.semi;if(ok)eS.ok++;
+$('#e-fb').textContent=ok?'Правильно: '+INTS[eS.semi][1]+'.':'Це був інтервал: '+INTS[eS.semi][1]+' ('+INTS[eS.semi][2]+').';
+$('#e-fb').className='fb '+(ok?'ok':'bad');
+$('#e-score').textContent='Правильно '+eS.ok+' з '+eS.all+'.';
+}
+
+function tone(c,t,type,f,dur,peak,fEnd){
+var o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t);
+if(fEnd)o.frequency.exponentialRampToValueAtTime(fEnd,t+dur);
+g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(0.0002,peak),t+0.002);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+0.02);
+}
+var NB=null;
+function noise(c,t,dur,peak,hp,bp){
+if(!NB){NB=c.createBuffer(1,Math.floor(c.sampleRate*0.4),c.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+var s=c.createBufferSource();s.buffer=NB;var g=c.createGain(),fl=c.createBiquadFilter();
+fl.type=bp?'bandpass':'highpass';fl.frequency.value=bp||hp;
+g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(0.0002,peak),t+0.002);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+s.connect(fl);fl.connect(g);g.connect(c.destination);s.start(t,Math.random()*0.1);s.stop(t+dur+0.02);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmt(sec){sec=Math.max(0,Math.ceil(sec));var m=Math.floor(sec/60),s=sec%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;}
+function num(sel,def,lo,hi){var v=parseFloat($(sel).value);if(isNaN(v))v=def;return Math.max(lo,Math.min(hi,v));}
+
+var METERS=[
+{id:'2/4',n:2,d:4,g:[[2]]},{id:'3/4',n:3,d:4,g:[[3]]},{id:'4/4',n:4,d:4,g:[[4],[2,2]]},
+{id:'5/4',n:5,d:4,g:[[3,2],[2,3]]},{id:'6/4',n:6,d:4,g:[[3,3],[2,2,2]]},{id:'7/4',n:7,d:4,g:[[4,3],[3,4]]},
+{id:'2/2',n:2,d:2,g:[[2]]},{id:'3/8',n:3,d:8,g:[[3]]},{id:'5/8',n:5,d:8,g:[[3,2],[2,3]]},
+{id:'6/8',n:6,d:8,g:[[3,3],[2,2,2]]},{id:'7/8',n:7,d:8,g:[[2,2,3],[3,2,2],[2,3,2]]},
+{id:'9/8',n:9,d:8,g:[[3,3,3],[2,2,2,3]]},{id:'11/8',n:11,d:8,g:[[3,3,3,2],[2,3,3,3]]},
+{id:'12/8',n:12,d:8,g:[[3,3,3,3],[2,2,2,2,2,2]]},{id:'custom',n:4,d:4,g:[[4]]}
+];
+var SOUNDS=[['click','Класичний клік'],['wood','Дерев’яний блок'],['hat','Хет'],['rim','Рім-шот'],['cow','Ковбел'],['beep','Електронний біп'],['drum','Кік і хет']];
+var MT={on:false,flat:true,bpm:120,n:4,d:4,groups:[[4]],gi:0,sub:1,swing:0.6,sound:'click',vol:1,acc:[3,2,2,2],next:0,b:0,s:0,bar:0,since:0,timer:null,taps:[]};
+function tname(b){return b<60?'Largo':b<66?'Larghetto':b<76?'Adagio':b<108?'Andante':b<120?'Moderato':b<168?'Allegro':b<200?'Presto':'Prestissimo';}
+function mtBpmUI(){$('#mt-bpm-v').textContent=MT.bpm;$('#mt-bpm').value=MT.bpm;$('#mt-tname').textContent=tname(MT.bpm);if($('#sp-bpm'))$('#sp-bpm').textContent=MT.bpm;}
+function setBpm(v){v=Math.round(+v);if(isNaN(v))return;MT.bpm=Math.max(30,Math.min(300,v));mtBpmUI();}
+function accFor(g,n){
+var a=[],i,pos=0;
+for(i=0;i<n;i++)a.push(g.length===1?2:1);
+g.forEach(function(l,gi){a[pos]=gi===0?3:2;pos+=l;});
+a[0]=3;return a;
+}
+function customGroups(n){
+var g=[[n]];
+if(n>=4){var t=[],k=Math.floor(n/3),r=n-3*k,i;for(i=0;i<k;i++)t.push(3);if(r>0)t.push(r);g.push(t);}
+return g;
+}
+function eff(l){return MT.flat&&l>0?2:l;}
+function mtAccUI(){
+var h='',starts={},pos=0;
+MT.groups[MT.gi].forEach(function(l){starts[pos]=1;pos+=l;});
+for(var i=0;i<MT.n;i++)h+='<button class="ab l'+eff(MT.acc[i])+(starts[i]&&i>0?' gs':'')+'" data-i="'+i+'" aria-label="Доля '+(i+1)+'"><i></i><span>'+(i+1)+'</span></button>';
+$('#mt-acc').innerHTML=h;
+$$('#mt-acc .ab').forEach(function(b){b.onclick=function(){var i=+this.getAttribute('data-i');MT.acc[i]=MT.flat?(MT.acc[i]===0?2:0):(MT.acc[i]+3)%4;mtAccUI();};});
+}
+function mtGroupUI(){
+$('#mt-group').innerHTML=MT.groups.map(function(g,i){return '<option value="'+i+'">'+g.join('+')+'</option>';}).join('');
+$('#mt-group').value=MT.gi;
+}
+function mtSetMeter(id){
+var m=METERS.filter(function(x){return x.id===id;})[0];
+$('#mt-custom').style.display=id==='custom'?'inline':'none';
+if(id==='custom'){MT.n=+$('#mt-n').value;MT.d=+$('#mt-d').value;MT.groups=customGroups(MT.n);}
+else{MT.n=m.n;MT.d=m.d;MT.groups=m.g;}
+MT.gi=0;MT.acc=accFor(MT.groups[0],MT.n);
+MT.b=0;MT.s=0;MT.bar=0;MT.since=0;
+mtGroupUI();mtAccUI();
+}
+function mtSound(t,lvl){
+var c=ac();if(!c)return;
+var v=MT.vol,k=lvl===3?1:lvl===2?0.72:lvl===1?0.45:0.3,ty=MT.sound,i=lvl===3?0:lvl===2?1:lvl===1?2:3;
+if(ty==='click')tone(c,t,'sine',[1800,1250,950,820][i],0.05,0.8*k*v);
+else if(ty==='wood')tone(c,t,'triangle',[950,720,580,500][i],0.09,1.0*k*v,[700,540,430,370][i]);
+else if(ty==='hat')noise(c,t,lvl===3?0.09:0.04,0.7*k*v,7000);
+else if(ty==='rim'){tone(c,t,'square',[1750,1450,1250,1100][i],0.03,0.22*k*v);noise(c,t,0.03,0.4*k*v,0,3200);}
+else if(ty==='cow'){var q=[1.12,1,0.95,0.9][i];tone(c,t,'square',540*q,0.14,0.14*k*v);tone(c,t,'square',800*q,0.14,0.14*k*v);}
+else if(ty==='beep')tone(c,t,'sine',[1047,784,659,523][i],0.09,0.55*k*v);
+else{if(lvl===3)tone(c,t,'sine',150,0.17,1.0*v,42);else noise(c,t,0.04,0.6*k*v,7000);}
+}
+function mtDur(){
+var bd=60/MT.bpm;
+if(MT.sub===1)return bd;
+if(MT.sub===2)return MT.s===0?bd*MT.swing:bd*(1-MT.swing);
+return bd/MT.sub;
+}
+function mtFlash(b,bar,silent){
+$$('#mt-acc .ab').forEach(function(e,k){e.classList.toggle('cur',k===b);});
+$('#mt-st').textContent='Такт '+(bar+1)+', доля '+(b+1)+(silent?', клік вимкнено':'');
+}
+function mtTick(){
+var c=ac();if(!c)return;
+while(MT.next<c.currentTime+0.14){
+var b=MT.b,s=MT.s,t=MT.next;
+var rp={on:$('#mt-ramp').checked,target:num('#mt-r1',100,30,300),step:num('#mt-rs',4,1,30),every:num('#mt-re',4,1,32)};
+if(b===0&&s===0&&MT.bar>0&&rp.on){
+MT.since++;
+if(MT.since>=rp.every){MT.since=0;if(MT.bpm<rp.target){var nb=Math.min(rp.target,MT.bpm+rp.step);MT.bpm=nb;setTimeout(mtBpmUI,Math.max(0,(t-c.currentTime)*1000));}}
+}
+var silent=false;
+if($('#mt-sil').checked){var pl=num('#mt-sil-p',4,1,32),rs=num('#mt-sil-r',1,1,16);silent=(MT.bar%(pl+rs))>=pl;}
+var lvl=eff(MT.acc[b]);
+if(!silent&&lvl>0)mtSound(t,s===0?lvl:0);
+if(s===0){(function(bb,br,sl){setTimeout(function(){if(MT.on)mtFlash(bb,br,sl);},Math.max(0,(t-c.currentTime)*1000));})(b,MT.bar,silent);}
+MT.next+=mtDur();
+MT.s++;
+if(MT.s>=MT.sub){MT.s=0;MT.b++;if(MT.b>=MT.n){MT.b=0;MT.bar++;}}
+}
+}
+function mtStart(){
+var c=ac();if(!c)return;
+MT.on=true;MT.b=0;MT.s=0;MT.bar=0;MT.since=0;
+if($('#mt-ramp').checked){setBpm(num('#mt-r0',60,30,300));}
+MT.next=c.currentTime+0.1;
+MT.timer=setInterval(mtTick,25);
+$('#mt-go').textContent='Стоп';$('#sp-met').textContent='Стоп метронома';
+}
+function mtStop(){
+MT.on=false;clearInterval(MT.timer);
+$('#mt-go').textContent='Старт';$('#sp-met').textContent='Старт метронома';$('#mt-st').textContent='';
+$$('#mt-acc .ab').forEach(function(e){e.classList.remove('cur');});
+}
+function initMetro(){
+$('#mt-meter').innerHTML=METERS.map(function(m){return '<option value="'+m.id+'">'+(m.id==='custom'?'Свій розмір':m.id)+'</option>';}).join('');
+$('#mt-meter').value='4/4';
+var ns='';for(var i=1;i<=16;i++)ns+='<option value="'+i+'"'+(i===4?' selected':'')+'>'+i+'</option>';
+$('#mt-n').innerHTML=ns;
+$('#mt-sound').innerHTML=SOUNDS.map(function(s){return '<option value="'+s[0]+'">'+s[1]+'</option>';}).join('');
+mtSetMeter('4/4');mtBpmUI();
+$('#mt-meter').onchange=function(){mtSetMeter(this.value);};
+$('#mt-n').onchange=function(){mtSetMeter('custom');};
+$('#mt-d').onchange=function(){mtSetMeter('custom');};
+$('#mt-group').onchange=function(){MT.gi=+this.value;MT.acc=accFor(MT.groups[MT.gi],MT.n);mtAccUI();};
+$('#mt-sub').onchange=function(){MT.sub=+this.value;$('#mt-swl').style.display=MT.sub===2?'inline-flex':'none';};
+$('#mt-swing').oninput=function(){MT.swing=this.value/100;$('#mt-swv').textContent=this.value+'%';};
+$('#mt-sound').onchange=function(){
+MT.sound=this.value;var c=ac();if(!c)return;
+var t=c.currentTime+0.05;mtSound(t,3);mtSound(t+0.35,2);mtSound(t+0.7,1);
+};
+$('#mt-vol').oninput=function(){MT.vol=this.value/100;};
+$('#mt-bpm').oninput=function(){setBpm(this.value);};
+$$('#p-metronome button[data-d]').forEach(function(b){b.onclick=function(){setBpm(MT.bpm+(+this.getAttribute('data-d')));};});
+$('#mt-go').onclick=function(){if(MT.on)mtStop();else mtStart();};
+$('#mt-flat').onchange=function(){MT.flat=this.checked;mtAccUI();};
+$('#mt-tap').onclick=function(){
+var now=Date.now();
+if(MT.taps.length&&now-MT.taps[MT.taps.length-1]>2000)MT.taps=[];
+MT.taps.push(now);if(MT.taps.length>6)MT.taps.shift();
+if(MT.taps.length>1){
+var sum=0;for(var i=1;i<MT.taps.length;i++)sum+=MT.taps[i]-MT.taps[i-1];
+setBpm(60000/(sum/(MT.taps.length-1)));
+}
+};
+}
+
+var FLATN=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'];
+function mname(m,flat){return (flat?FLATN:SHARP)[md(m,12)]+(Math.floor(m/12)-1);}
+var TUNINGS=[
+{n:'Стандартний (E A D G B e)',m:[40,45,50,55,59,64]},
+{n:'Drop D (D A D G B e)',m:[38,45,50,55,59,64]},
+{n:'Пів тону нижче (E♭ A♭ D♭ G♭ B♭ e♭)',m:[39,44,49,54,58,63],flat:true},
+{n:'Тон нижче (D G C F A d)',m:[38,43,48,53,57,62]},
+{n:'Drop C (C G C F A d)',m:[36,43,48,53,57,62]},
+{n:'DADGAD',m:[38,45,50,55,57,62]},
+{n:'Open G (D G D G B d)',m:[38,43,50,55,59,62]},
+{n:'Open D (D A D F♯ A d)',m:[38,45,50,54,57,62]},
+{n:'Open E (E B E G♯ B e)',m:[40,47,52,56,59,64]},
+{n:'Open C (C G C G C e)',m:[36,43,48,55,60,64]},
+{n:'Сімострунна гітара (B E A D G B e)',m:[35,40,45,50,55,59,64]},
+{n:'Бас-гітара, 4 струни (E A D G)',m:[28,33,38,43]},
+{n:'Укулеле (G C E A)',m:[67,60,64,69]}
+];
+var tn={t:0,ref:440,lock:null,on:false,tone:null,hist:[],last:0,timer:null,stream:null,an:null,buf:null,src:null};
+function tfreq(m){return tn.ref*Math.pow(2,(m-69)/12);}
+function tnStopTone(){
+if(!tn.tone)return;
+var c=ac(),tt=tn.tone;
+try{tt.g.gain.cancelScheduledValues(0);tt.g.gain.setTargetAtTime(0.0001,c.currentTime,0.05);}catch(e){}
+setTimeout(function(){tt.os.forEach(function(x){try{x.stop();}catch(e){}});},300);
+clearTimeout(tt.to);tn.tone=null;
+}
+function tnTone(i){
+var same=tn.tone&&tn.tone.i===i;
+tnStopTone();if(same)return;
+var c=ac();if(!c)return;
+var f=tfreq(TUNINGS[tn.t].m[i]),g=c.createGain(),t=c.currentTime,os=[];
+g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.28,t+0.05);g.connect(c.destination);
+[[1,'triangle',1],[2,'sine',0.35],[3,'sine',0.18]].forEach(function(p){
+var o=c.createOscillator(),gg=c.createGain();o.type=p[1];o.frequency.value=f*p[0];gg.gain.value=p[2];o.connect(gg);gg.connect(g);o.start(t);os.push(o);
+});
+tn.tone={i:i,g:g,os:os,to:setTimeout(tnStopTone,10000)};
+}
+function tnStrings(){
+var T=TUNINGS[tn.t],n=T.m.length;
+$('#tn-str').innerHTML=T.m.map(function(m,i){return '<button class="btn'+(tn.lock===i?' on':'')+'" data-i="'+i+'">'+(n-i)+' · '+mname(m,T.flat)+'</button>';}).join('');
+$$('#tn-str button').forEach(function(b){b.onclick=function(){var i=+this.getAttribute('data-i');tn.lock=i;tnStrings();tnTone(i);};});
+}
+function gp(a,r){return [150+r*Math.sin(a),150-r*Math.cos(a)];}
+function gArc(a0,a1,r){var p=gp(a0,r),q=gp(a1,r);return 'M'+p[0].toFixed(1)+' '+p[1].toFixed(1)+' A'+r+' '+r+' 0 0 1 '+q[0].toFixed(1)+' '+q[1].toFixed(1);}
+function tnGauge(){
+var h='',R=120,k=60*Math.PI/180,c;
+h+='<path d="'+gArc(-k,k,R)+'" fill="none" style="stroke:var(--line)" stroke-width="12" stroke-linecap="round"/>';
+h+='<path d="'+gArc(-k*5/50,k*5/50,R)+'" fill="none" style="stroke:var(--ok)" stroke-width="12"/>';
+for(c=-50;c<=50;c+=10){
+var a=c/50*k,p1=gp(a,R-12),p2=gp(a,R-(c%50===0?28:21));
+h+='<line x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" style="stroke:var(--muted)" stroke-width="1.5"/>';
+}
+[[-50,'−50'],[0,'0'],[50,'+50']].forEach(function(e){var p=gp(e[0]/50*k,R-42);h+='<text x="'+p[0].toFixed(1)+'" y="'+p[1].toFixed(1)+'" text-anchor="middle" style="fill:var(--muted);font-size:11px">'+e[1]+'</text>';});
+h+='<g id="tn-needle" style="opacity:.35"><line x1="150" y1="150" x2="150" y2="44" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="150" cy="150" r="7" style="fill:var(--ink)"/></g>';
+$('#tn-g').innerHTML=h;
+}
+function yin(x,sr){
+var W=2048,maxTau=Math.min(Math.floor(sr/38),x.length-W-1),d=new Float32Array(maxTau+1),i,t,rms=0;
+for(i=0;i<W;i++)rms+=x[i]*x[i];
+rms=Math.sqrt(rms/W);
+if(rms<0.008)return -1;
+for(t=1;t<=maxTau;t++){var s=0;for(i=0;i<W;i++){var df=x[i]-x[i+t];s+=df*df;}d[t]=s;}
+var run=0;d[0]=1;
+for(t=1;t<=maxTau;t++){run+=d[t];d[t]=run>0?d[t]*t/run:1;}
+var tau=-1;
+for(t=2;t<=maxTau;t++){if(d[t]<0.12){while(t+1<=maxTau&&d[t+1]<d[t])t++;tau=t;break;}}
+if(tau<0)return -1;
+var x0=d[tau-1],x2=tau<maxTau?d[tau+1]:d[tau],den=x0+x2-2*d[tau];
+var better=den!==0?tau+(x0-x2)/(2*den):tau;
+return sr/better;
+}
+function tnShow(f){
+var needle=$('#tn-needle');
+if(f<=0){
+needle.style.opacity='.35';needle.setAttribute('transform','rotate(0 150 150)');
+$('#tn-note').textContent='—';$('#tn-hz').textContent='';
+$('#tn-msg').textContent='Зіграйте відкриту струну.';$('#tn-msg').className='fb';
+return;
+}
+var T=TUNINGS[tn.t],mf=69+12*Math.log2(f/tn.ref),ti=0,best=1e9,i;
+if(tn.lock!==null)ti=tn.lock;
+else for(i=0;i<T.m.length;i++){var dd=Math.abs(mf-T.m[i]);if(dd<best){best=dd;ti=i;}}
+var cents=1200*Math.log2(f/tfreq(T.m[ti]));
+var cc=Math.max(-50,Math.min(50,cents));
+needle.style.opacity='1';needle.setAttribute('transform','rotate('+(cc/50*60).toFixed(1)+' 150 150)');
+$('#tn-note').textContent=mname(T.m[ti],T.flat);
+$('#tn-hz').textContent='Струна '+(T.m.length-ti)+', звучить '+f.toFixed(1)+' Гц, '+(cents>=0?'+':'−')+Math.abs(cents).toFixed(0)+' центів';
+var ok=Math.abs(cents)<=5;
+$('#tn-msg').textContent=ok?'Чисто.':(cents<0?'Низько: підтягніть струну.':'Високо: послабте струну.');
+$('#tn-msg').className='fb '+(ok?'ok':'bad');
+}
+function tnLoop(){
+if(!tn.on)return;
+tn.an.getFloatTimeDomainData(tn.buf);
+var sr=ac().sampleRate,f=yin(tn.buf,sr),now=Date.now();
+if(f>0){
+tn.last=now;tn.hist.push(f);if(tn.hist.length>5)tn.hist.shift();
+var s=tn.hist.slice().sort(function(a,b){return a-b;});
+tnShow(s[Math.floor(s.length/2)]);
+}else if(now-tn.last>600){tn.hist=[];tnShow(-1);}
+}
+function tnMsg(t){$('#tn-msg').textContent=t;$('#tn-msg').className='fb bad';}
+function tnStop(){
+tn.on=false;clearInterval(tn.timer);
+try{if(tn.stream)tn.stream.getTracks().forEach(function(t){t.stop();});}catch(e){}
+try{if(tn.src)tn.src.disconnect();}catch(e){}
+tn.stream=null;tn.src=null;
+$('#tn-mic').textContent='Увімкнути мікрофон';
+tnShow(-1);
+}
+function tnStart(){
+if(tn.on){tnStop();return;}
+if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){tnMsg('Цей браузер або вікно не дає доступу до мікрофона. Відкрийте файл безпосередньо в браузері.');return;}
+var c=ac();if(!c){tnMsg('Звук недоступний у цьому браузері.');return;}
+navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}}).then(function(st){
+tn.stream=st;tn.src=c.createMediaStreamSource(st);
+tn.an=c.createAnalyser();tn.an.fftSize=4096;tn.src.connect(tn.an);
+tn.buf=new Float32Array(tn.an.fftSize);tn.on=true;tn.last=Date.now();tn.hist=[];
+tn.timer=setInterval(tnLoop,60);
+$('#tn-mic').textContent='Вимкнути мікрофон';
+tnShow(-1);
+}).catch(function(){tnMsg('Немає доступу до мікрофона. Дозвольте його в налаштуваннях браузера. Якщо сторінка відкрита всередині чату, відкрийте її в окремій вкладці або скористайтеся завантаженим файлом.');});
+}
+function initTuner(){
+$('#tn-tun').innerHTML=TUNINGS.map(function(t,i){return '<option value="'+i+'">'+t.n+'</option>';}).join('');
+$('#tn-tun').onchange=function(){tn.t=+this.value;tn.lock=null;tnStopTone();tnStrings();};
+$('#tn-ref').onchange=function(){tn.ref=num('#tn-ref',440,415,466);$('#tn-ref').value=tn.ref;};
+$('#tn-mic').onclick=tnStart;
+$('#tn-auto').onclick=function(){tn.lock=null;tnStopTone();tnStrings();};
+tnGauge();tnStrings();
+}
+
+var SPD={reps:0,best:{}};
+try{var rb=localStorage.getItem('grif-best-bpm');if(rb)SPD.best=JSON.parse(rb)||{};}catch(e){SPD.best={};}
+function spUI(){
+var tg=num('#sp-target',5,1,20);
+$('#sp-count').textContent=SPD.reps+' / '+tg;
+var ks=Object.keys(SPD.best);
+$('#sp-best').textContent=ks.length?'Рекорди темпу: '+ks.map(function(k){return k+', '+SPD.best[k]+' уд/хв';}).join('; ')+'.':'Рекордів поки немає.';
+}
+function initSpeed(){
+$('#sp-met').onclick=function(){if(MT.on)mtStop();else mtStart();};
+$$('#p-practice button[data-sd]').forEach(function(b){b.onclick=function(){setBpm(MT.bpm+(+this.getAttribute('data-sd')));};});
+$('#sp-target').onchange=spUI;
+$('#sp-ok').onclick=function(){
+var tg=num('#sp-target',5,1,20),st=num('#sp-step',4,1,20);
+SPD.reps++;
+if(SPD.reps>=tg){
+SPD.reps=0;setBpm(MT.bpm+st);
+$('#sp-fb').textContent='Мету досягнуто. Темп піднято до '+MT.bpm+' уд/хв.';$('#sp-fb').className='fb ok';
+var c=ac();if(c)tone(c,c.currentTime,'sine',1175,0.2,0.4);
+}else{$('#sp-fb').textContent='';}
+spUI();
+};
+$('#sp-bad').onclick=function(){SPD.reps=0;$('#sp-fb').textContent='Лічильник обнулено. Не поспішайте, іноді варто знизити темп.';$('#sp-fb').className='fb bad';spUI();};
+$('#sp-save').onclick=function(){
+var nm=($('#sp-name').value||'Вправа').trim().slice(0,30)||'Вправа';
+if(!SPD.best[nm]||SPD.best[nm]<MT.bpm)SPD.best[nm]=MT.bpm;
+try{localStorage.setItem('grif-best-bpm',JSON.stringify(SPD.best));}catch(e){}
+spUI();
+};
+spUI();
+}
+
+var TM={segs:[],i:0,left:0,on:false,end:0,last:0,timer:null,acc:0};
+var TMPRE=[
+{n:'Заняття 30 хв',segs:[['Розігрів',300],['Акорди',420],['Гами й позиції',480],['Гриф: тренажер',300],['Пісня',300]]},
+{n:'Помодоро 25/5',w:25,r:5,k:4},
+{n:'Інтервали 3 хв і 30 с',w:3,r:0.5,k:6},
+{n:'Швидка вправа 10 хв',segs:[['Вправа',600]]}
+];
+var LOGD={};
+try{var rl=localStorage.getItem('grif-log');if(rl)LOGD=JSON.parse(rl)||{};}catch(e){LOGD={};}
+function dayKey(off){var d=new Date();d.setDate(d.getDate()-off);var m=d.getMonth()+1,dd=d.getDate();return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(dd<10?'0':'')+dd;}
+function saveLog(){try{localStorage.setItem('grif-log',JSON.stringify(LOGD));}catch(e){}}
+function tmLogUI(){
+var today=LOGD[dayKey(0)]||0,streak=0,off=today>=60?0:1;
+while((LOGD[dayKey(off)]||0)>=60&&streak<365){streak++;off++;}
+$('#tm-log').textContent='Сьогодні вправлялися: '+Math.round(today/60)+' хв. Днів підряд: '+streak+'.';
+}
+function tmFrom(arr){
+clearInterval(TM.timer);TM.timer=null;TM.on=false;
+TM.segs=arr;TM.i=0;TM.left=arr.length?arr[0].sec:0;
+$('#tm-go').textContent='Старт';
+tmUI();
+}
+function tmPreset(p){
+var arr=[];
+if(p.segs)p.segs.forEach(function(s){arr.push({name:s[0],sec:s[1],work:true});});
+else tmBuild(p.w,p.r,p.k,arr);
+tmFrom(arr);
+}
+function tmBuild(w,r,k,arr){
+for(var j=0;j<k;j++){
+arr.push({name:'Робота '+(j+1)+' з '+k,sec:Math.round(w*60),work:true});
+if(r>0&&j<k-1)arr.push({name:'Пауза',sec:Math.round(r*60),work:false});
+}
+}
+function tmUI(){
+var total=0,done=0,i;
+TM.segs.forEach(function(s,k){total+=s.sec;if(k<TM.i)done+=s.sec;});
+var cur=TM.segs[TM.i];
+if(cur)done+=cur.sec-TM.left;
+$('#tm-time').textContent=fmt(cur?TM.left:0);
+$('#tm-seg').textContent=cur?cur.name:'Усе виконано. Гарна робота.';
+$('#tm-bar').style.width=(total?100*done/total:0)+'%';
+$('#tm-list').innerHTML=TM.segs.map(function(s,k){return '<li class="'+(k<TM.i?'done':(k===TM.i?'now':''))+'">'+esc(s.name)+', '+fmt(s.sec)+'</li>';}).join('');
+tmLogUI();
+}
+function tmBeep(){
+var c=ac();if(!c)return;
+var t=c.currentTime;tone(c,t,'sine',880,0.15,0.4);tone(c,t+0.2,'sine',1175,0.3,0.4);
+}
+function tmTick(){
+var now=Date.now(),seg=TM.segs[TM.i];
+if(!seg){clearInterval(TM.timer);return;}
+var dt=Math.min(1,(now-TM.last)/1000);TM.last=now;
+if(seg.work){var k=dayKey(0);LOGD[k]=(LOGD[k]||0)+dt;TM.acc+=dt;if(TM.acc>=5){saveLog();TM.acc=0;}}
+var left=(TM.end-now)/1000;
+if(left<=0){
+tmBeep();TM.i++;
+if(TM.i>=TM.segs.length){clearInterval(TM.timer);TM.on=false;TM.left=0;$('#tm-go').textContent='Старт';saveLog();}
+else{TM.left=TM.segs[TM.i].sec;TM.end=now+TM.left*1000;}
+}else TM.left=left;
+tmUI();
+}
+function initTimer(){
+$('#tm-pre').innerHTML=TMPRE.map(function(p,i){return '<button class="btn" data-i="'+i+'">'+p.n+'</button>';}).join('');
+$$('#tm-pre button').forEach(function(b){b.onclick=function(){tmPreset(TMPRE[+this.getAttribute('data-i')]);};});
+$('#tm-build').onclick=function(){var arr=[];tmBuild(num('#tm-w',10,0.5,180),num('#tm-r',2,0,60),Math.round(num('#tm-k',3,1,20)),arr);tmFrom(arr);};
+$('#tm-go').onclick=function(){
+if(!TM.segs[TM.i])return;
+if(TM.on){TM.on=false;clearInterval(TM.timer);saveLog();this.textContent='Продовжити';return;}
+ac();
+TM.on=true;TM.last=Date.now();TM.end=TM.last+TM.left*1000;
+TM.timer=setInterval(tmTick,250);this.textContent='Пауза';
+};
+$('#tm-skip').onclick=function(){
+if(!TM.segs[TM.i])return;
+TM.i++;
+if(TM.i>=TM.segs.length){clearInterval(TM.timer);TM.on=false;TM.left=0;$('#tm-go').textContent='Старт';}
+else{TM.left=TM.segs[TM.i].sec;TM.end=Date.now()+TM.left*1000;}
+tmUI();
+};
+$('#tm-reset').onclick=function(){tmFrom(TM.segs.map(function(s){return s;}));};
+tmPreset(TMPRE[0]);
+}
+function initPractice(){initMetro();initTuner();initSpeed();initTimer();}
+
+var PL=[
+['Основи',[['a1','Налаштувати гітару й назвати відкриті струни (E A D G B e)'],['a2','Знати ноти на шостій і п’ятій струнах до 12-го ладу'],['a3','Грати Em, Am, E, A, D, G, C і переходити між ними без пауз'],['a4','Тримати рівний ритм під метроном 80 уд/хв'],['a5','Читати акордові діаграми']]],
+['Середній рівень',[['b1','Знати ноти на всіх струнах (тренажер без помилок)'],['b2','Грати мінорну пентатоніку в п’яти позиціях'],['b3','Грати барре F і Bm'],['b4','Знати, як будується мажорна гама й акорди тональності'],['b5','Грати тризвуччя на верхніх струнах у всіх інверсіях']]],
+['Просунутий рівень',[['c1','Знати сім позицій діатонічної гами'],['c2','Імпровізувати по бекінг-треку, цілячись у терції акордів'],['c3','Грати арпеджіо акордів тональності'],['c4','Розрізняти інтервали на слух'],['c5','Мислити ладами (дорійський, міксолідійський)']]]
+];
+var plDone={};
+try{var raw=localStorage.getItem('grif-plan');if(raw)plDone=JSON.parse(raw)||{};}catch(e){plDone={};}
+function initPlan(){
+var h='<div class="cols3">',total=0;
+PL.forEach(function(g){
+h+='<div><h3>'+g[0]+'</h3>';
+g[1].forEach(function(it){total++;h+='<label class="ck"><input type="checkbox" data-id="'+it[0]+'"'+(plDone[it[0]]?' checked':'')+'><span>'+it[1]+'</span></label>';});
+h+='</div>';
+});
+h+='</div>';
+$('#pl-list').innerHTML=h;
+$$('#pl-list input').forEach(function(c){c.onchange=function(){
+plDone[this.getAttribute('data-id')]=this.checked;
+try{localStorage.setItem('grif-plan',JSON.stringify(plDone));}catch(e){}
+plUpd(total);
+};});
+plUpd(total);
+}
+function plUpd(total){
+var n=0;Object.keys(plDone).forEach(function(k){if(plDone[k])n++;});
+$('#pl-bar').style.width=(100*n/total)+'%';
+$('#pl-txt').textContent='Виконано '+n+' з '+total+'.';
+}
+
+function initSubs(){
+$$('.pane').forEach(function(p){
+var kids=Array.prototype.slice.call(p.children);
+var vs=kids.filter(function(k){return k.classList.contains('view');});
+if(vs.length<2)return;
+var bar=document.createElement('div');bar.className='subbar';
+var nav=document.createElement('div');nav.className='subnav';nav.setAttribute('role','group');nav.setAttribute('aria-label','Підрозділи');
+var bs=vs.map(function(v,i){
+var b=document.createElement('button');b.className='btn';b.type='button';b.textContent=v.getAttribute('data-title');
+b.onclick=function(){show(i);};nav.appendChild(b);return b;
+});
+bar.appendChild(nav);
+var ex=kids.filter(function(k){return k.classList.contains('subextra');})[0];
+if(ex)bar.appendChild(ex);
+p.insertBefore(bar,vs[0]);
+function show(i){
+vs.forEach(function(v,k){v.hidden=k!==i;});
+bs.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false');});
+}
+show(0);
+});
+}
+var TABS=['scales','notes','chords','theory','trainer','metronome','tuner','practice','plan'];
+function route(){
+var h=(location.hash||'').replace('#','');
+if(TABS.indexOf(h)<0)h='scales';
+TABS.forEach(function(t){$('#p-'+t).hidden=t!==h;});
+$$('#nav a').forEach(function(a){var on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+
+initScales();initNotes();initChords();initTheory();initQuiz();initEar();initPractice();initPlan();initSubs();
+$$('.lb-seg button').forEach(function(b){b.onclick=function(){
+LBN=this.getAttribute('data-v')==='n';
+$$('.lb-seg button').forEach(function(x){x.classList.toggle('on',(x.getAttribute('data-v')==='n')===LBN);});
+drawScales();drawChordA();drawTriads();drawCaged();
+};});
+route();
+})();
+</script>
+</body>
+</html>
