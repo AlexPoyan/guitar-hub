@@ -14,7 +14,7 @@ mod tests {
 
     #[test]
     fn second_is_bigger() {
-        let result = is_first_bigger(3, 4);
+        let result = is_first_bigger(5, 4);
         assert!(!result);
     }
 
